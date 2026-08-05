@@ -197,12 +197,50 @@ void TaskBlock::setUp(){
     block->setMaximumHeight(105);
 
 }
+/*
+QElapsedTimer timer;
+bool flagForSingleClick = false;
 
-void TaskBlock::mouseReleaseEvent(QMouseEvent *event){
-    emit clicked(this);
+bool TaskBlock::event(QEvent* event){
+
+
+    if(event->type() == QEvent::MouseButtonPress){
+        timer.restart();
+        flagForSingleClick = true;
+        qDebug()<<event->type()<<timer.elapsed();
+    }
+
+    if(event->type() == QEvent::MouseButtonDblClick){
+        qDebug()<<event->type()<<timer.elapsed();
+        emit clicked(this);
+        emit doubleClicked(taskStored);
+        flagForSingleClick = false;
+
+        if(timer.elapsed()<180){
+            emit clicked(this);
+            emit doubleClicked(taskStored);
+            flagForSingleClick = false;
+        }
+    }
+
+    if(flagForSingleClick && timer.elapsed()>180){
+        flagForSingleClick = false;
+        emit clicked(this);
+    }
+
+    return QWidget::event(event);
 }
+*/
+/*
+void TaskBlock::mousePressEvent(QMouseEvent *event){
+    if(event->button() == Qt::LeftButton){
+        emit clicked(this);
+    }
 
+}
+*/
 void TaskBlock::mouseDoubleClickEvent(QMouseEvent *event){
+    emit doubleClicked(this);
     emit doubleClicked(taskStored);
 }
 
@@ -215,7 +253,7 @@ void TaskBlock::selected(){
     sizeAnimation->setStartValue(sizeAnimation->targetObject()->property("size").toSize());
     block->setMaximumHeight(block->height()+5);
     sizeAnimation->setEndValue(QSize(block->width(),block->height()+5));
-    block->setMinimumSize(block->width(),block->height()+5);
+    block->setMinimumSize(270,block->height()+5);
     sizeAnimation->start();
 
 }

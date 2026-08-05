@@ -7,6 +7,7 @@ CONFIG += c++17
 HEADERS += \
     src/GUI/AddTask/TaskCreationWindow.h \
     src/GUI/AddTask/TypeSelectionPopup.h \
+    src/GUI/ConfirmPopup.h \
     src/GUI/GuiVisitors/BlockVisitor.h \
     src/GUI/GuiVisitors/DetailVisitor.h \
     src/GUI/GuiVisitors/EditVisitor.h \
@@ -27,6 +28,8 @@ HEADERS += \
     src/GUI/Pages/EditPages/WorkEdit.h \
     src/GUI/StackedWindow.h \
     src/GUI/TaskBlock.h \
+    src/GUI/TaskDetailWindow.h \
+    src/GUI/TaskEditWindow.h \
     src/GUI/TasksList.h \
     src/GUI/TasksListWindow.h \
     src/Model/Headers/AbstractTask.h \
@@ -49,6 +52,7 @@ HEADERS += \
     src/GUI/ToolBar.h \
 
 SOURCES += \
+    src/GUI/ConfirmPopup.cpp \
     src/GUI/GuiVisitors/BlockVisitor.cpp \
     src/GUI/GuiVisitors/DetailVisitor.cpp \
     src/GUI/GuiVisitors/EditVisitor.cpp \
@@ -70,6 +74,8 @@ SOURCES += \
     src/GUI/Pages/EditPages/WorkEdit.cpp \
     src/GUI/StackedWindow.cpp \
     src/GUI/TaskBlock.cpp \
+    src/GUI/TaskDetailWindow.cpp \
+    src/GUI/TaskEditWindow.cpp \
     src/GUI/TasksList.cpp \
     src/GUI/TasksListWindow.cpp \
     src/Model/data_persistancy/json/jsonReader.cpp \

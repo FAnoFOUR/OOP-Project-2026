@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     stackWindow = new StackedWindow();
     splitter->addWidget(stackWindow);
     connect(taskListWindow, &TasksListWindow::taskToShow, stackWindow, &StackedWindow::showDetailWindow);
+    connect(stackWindow, &StackedWindow::unselectTaskBlock, taskListWindow->getTaskList(), &TasksList::unselect);
 
     setMinimumSize(920,600);
 }
@@ -80,7 +81,7 @@ void MainWindow::saveToFile(){
 }
 
 void MainWindow::loadFromFile(){
-    QString file = QFileDialog::getSaveFileName(
+    QString file = QFileDialog::getOpenFileName(
         this,
         QString("Load From File"),
         QDir::homePath(),
@@ -88,6 +89,8 @@ void MainWindow::loadFromFile(){
 
     if (!file.isEmpty())
     {
+
+
         bool success = TaskListManager::getInstance().loadFromFile(file.toStdString());
         if (success){
             QMessageBox::information(this, "Success", "Content imported successfully");

@@ -11,37 +11,33 @@
 #include <QScrollArea>
 
 //#include "WeekScollMenuBar" //opzionale se troppo complicato
-//#include "TaskDetailWindow"
-//#include "TaskEditWindow"
+#include "TaskDetailWindow.h"
+#include "TaskEditWindow.h"
 
 class StackedWindow: public QWidget{
     Q_OBJECT
 
 private:
+    AbstractTask *savedTask = nullptr;
 
     QStackedLayout *stack = nullptr;
     QCalendarWidget *calendar = nullptr;
 
-    DetailVisitor detailVisitor;
-    EditVisitor editVisitor;
 
-    QFrame *detailFrame = nullptr;
-    QScrollArea *detailScrollArea = nullptr;
-    QPushButton *editButton = nullptr;
-    QPushButton *removeButton = nullptr;
+    TaskDetailWindow *detail = nullptr;
+    TaskEditWindow *edit = nullptr;
 
-    QFrame *editFrame = nullptr;
-    QScrollArea *editScrollArea = nullptr;
-    QPushButton *saveButton = nullptr;
-    QPushButton *discardButton = nullptr;
-    //TaskDetailWindow *detail = nullptr
-    //TaskEditWindow *edit = nullptr
+    void close();
 
-    void setUpDetailFrame();
-    void setUpEditFrame();
+    DetailPage* createDetailPage();
+    EditPage* createEditPage();
+
+signals:
+    void unselectTaskBlock();
 
 public slots:
     void showDetailWindow(AbstractTask *task);
+    void showEditWindow(AbstractTask* task);
 
 public:
     StackedWindow(QWidget *parent = nullptr);

@@ -24,6 +24,7 @@ private slots:
 
 public slots:
     bool filter(Filter filterValues);
+    void unselect();
 
 signals:
     void taskToShow(AbstractTask* task);
@@ -33,7 +34,7 @@ private:
     QVBoxLayout *containerLayout = nullptr;
     QList<TaskBlock*> list; //per ordinare
 
-    TaskBlock *selectedTask = nullptr;
+    TaskBlock *selectedTaskBlock = nullptr;
 
     void searchTitle();
     void searchType();
@@ -46,8 +47,6 @@ public:
     void addTask(AbstractTask* task);
 
     void fillContainer(QList<TaskBlock*> list);
-
-    //void filter(); implementare il filter
 
     TasksList(QWidget *parent = nullptr);
 };

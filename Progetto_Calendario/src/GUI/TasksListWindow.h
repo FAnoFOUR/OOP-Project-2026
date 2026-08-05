@@ -33,6 +33,8 @@ private slots:
 public:
     TasksListWindow(QWidget *parent = nullptr);
     void addTask(AbstractTask* task);
+    TasksList* getTaskList();
+
     ~TasksListWindow();
 
 private:

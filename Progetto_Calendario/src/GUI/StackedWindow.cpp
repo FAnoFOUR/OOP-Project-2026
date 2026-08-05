@@ -10,58 +10,46 @@
 
 StackedWindow::StackedWindow(QWidget *parent): QWidget(parent) {
 
-    setUpDetailFrame();
-    setUpEditFrame();
-
     stack = new QStackedLayout(this);
 
     QFrame *first = new QFrame();
 
-    auto *half = new QHBoxLayout(first);
+    auto *layout = new QHBoxLayout(first);
 
 
-    half->addWidget(calendar = new QCalendarWidget()); //index 0
+    layout->addWidget(calendar = new QCalendarWidget()); //index 0
 
+    stack->addWidget(first); // index 0
 
-    stack->addWidget(first);
-}
+    detail = new TaskDetailWindow(this);
+    edit = new TaskEditWindow(this);
+    connect(detail, &TaskDetailWindow::emitClose, this, &StackedWindow::close);
+    connect(detail, &TaskDetailWindow::editTask, this, &StackedWindow::showEditWindow);
+    connect(edit, &TaskEditWindow::emitClose, this, &StackedWindow::close);
 
-void StackedWindow::setUpDetailFrame(){
-    detailFrame = new QFrame();
-    QVBoxLayout *detailLayout = new QVBoxLayout(detailFrame);
-
-    QHBoxLayout *lineForCloseButton = new QHBoxLayout();
-    QPushButton *closeButton = new QPushButton("Close");
-    lineForCloseButton->setAlignment(Qt::AlignRight);
-    lineForCloseButton->addWidget(closeButton);
-
-    detailLayout->addLayout(lineForCloseButton);
-
-    detailScrollArea = new QScrollArea();
-    detailLayout->addWidget(detailScrollArea);
-    detailScrollArea->setWidgetResizable(true);
-
-    QHBoxLayout *lineForEditRemoveButtons = new QHBoxLayout;
-    QPushButton *editButton = new QPushButton("Edit");
-    QPushButton *RemoveButton = new QPushButton("Remove");
-    lineForEditRemoveButtons->setAlignment(Qt::AlignRight);
-    lineForEditRemoveButtons->addWidget(editButton);
-    lineForEditRemoveButtons->addWidget(RemoveButton);
-
-    detailLayout->addLayout(lineForEditRemoveButtons);
-}
-
-void StackedWindow::setUpEditFrame(){
-
+    stack->addWidget(detail); //index 1
+    stack->addWidget(edit); //index 2
 }
 
 void StackedWindow::showDetailWindow(AbstractTask* task){
-    task->accept(detailVisitor);
-    DetailPage *detailPage = detailVisitor.getDetailPage();
 
-    detailScrollArea->setWidget(detailPage);
-    detailScrollArea->setWidgetResizable(true);
+    detail->showTask(task);
 
-    stack->addWidget(detailFrame);
-    stack->setCurrentWidget(detailFrame); //index 1
+    detail->show();
+
+    stack->setCurrentIndex(1);
+}
+
+void StackedWindow::showEditWindow(AbstractTask* task){
+
+    edit->showTask(task);
+
+    stack->setCurrentIndex(2);
+}
+
+void StackedWindow::close(){
+    stack->setCurrentIndex(stack->currentIndex()-1);
+    if(stack->currentIndex() == 0){
+        emit unselectTaskBlock();
+    }
 }

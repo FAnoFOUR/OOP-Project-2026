@@ -17,7 +17,7 @@ EditPage::EditPage(Activity *Activity, QWidget *parent): QWidget(parent), layout
     layout->addWidget(activityPage);
 
     //SAVE EDIT
-    //connect(this, &EditPage::confirmSave, activityPage, &ActivityEdit::saveEdit)
+    //connect(this, &EditPage::confirmSave, activityPage, &ActivityEdit::saveEdit);
 
     /*connect(this, &EditPage::createTask, activityPage, &ActivityEdit::createTask); WRONG
     connect(activityPage, &ActivityEdit::returnTask, this, &EditPage::sendTask);*/
@@ -51,7 +51,7 @@ EditPage::EditPage(Project *Project, QWidget *parent): QWidget(parent), layout(n
 
 }
 
-EditPage::EditPage(QString type, QWidget *parent): QWidget(parent), layout(new QStackedLayout(this)){
+EditPage::EditPage(QString type, QWidget *parent): QWidget(parent), layout(new QStackedLayout(this)){ //utilizzato per il popUp
 
     switch (list.indexOf(type)) {
     case 0:

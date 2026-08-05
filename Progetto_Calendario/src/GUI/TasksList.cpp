@@ -26,8 +26,9 @@ TasksList::TasksList(QWidget *parent): QWidget(parent), containerLayout(new QVBo
 }
 
 void TasksList::addTask(TaskBlock* taskBlock){
-    connect(taskBlock, &TaskBlock::clicked, this, &TasksList::selected);
-    connect(taskBlock, &TaskBlock::doubleClicked, this, &TasksList::taskToShow);
+    //connect(taskBlock, &TaskBlock::clicked, this, &TasksList::selected);
+    connect(taskBlock, static_cast<void (TaskBlock::*)(TaskBlock*)>(&TaskBlock::doubleClicked), this, &TasksList::selected);
+    connect(taskBlock, static_cast<void (TaskBlock::*)(AbstractTask*)>(&TaskBlock::doubleClicked), this, &TasksList::taskToShow);
 
     if(list.isEmpty()){
         list.append(taskBlock);
@@ -56,16 +57,22 @@ void TasksList::addTask(AbstractTask* task){
 
 
 void TasksList::selected(TaskBlock* task){
-    if(selectedTask != task){
-        if(selectedTask){
-            selectedTask->unselected();
+    if(!selectedTaskBlock || selectedTaskBlock != task){
+        if(selectedTaskBlock){
+            selectedTaskBlock->unselected();
         }
-        task->selected();
-        selectedTask = task;
-    }else if(selectedTask == task){
-        selectedTask->unselected();
-        selectedTask = nullptr;
-    }
+        if(task != nullptr){
+            task->selected();
+        }
+        selectedTaskBlock = task;
+    }/*else if(selectedTaskBlock == task){
+        selectedTaskBlock->unselected();
+        selectedTaskBlock = nullptr;
+    }*/
+}
+
+void TasksList::unselect(){
+    selected(nullptr);
 }
 
 bool TasksList::filter(Filter filterValues){

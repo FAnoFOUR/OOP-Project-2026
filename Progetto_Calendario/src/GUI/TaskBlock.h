@@ -12,6 +12,8 @@
 #include <QDate>
 #include <QComboBox>
 #include <QVBoxLayout>
+#include <QMouseEvent>
+#include <QElapsedTimer>
 
 using namespace std;
 
@@ -22,7 +24,7 @@ private:
 
     QVBoxLayout *outerBox = nullptr;
     QFrame *block = nullptr;
-    //tutto da sostituire con AbstractTask* task;
+
     AbstractTask* taskStored;
 
     QLabel *title = nullptr;
@@ -33,13 +35,16 @@ private:
 
     void setUp();
 
+    //virtual bool event(QEvent* event) override;
+
 protected:
-    virtual void mouseReleaseEvent(QMouseEvent *event) override;
+    //virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
 
 
 signals:
-    void clicked(TaskBlock* taskBlock);
+    //void clicked(TaskBlock* taskBlock);
+    void doubleClicked(TaskBlock* taskBlock);
     void doubleClicked(AbstractTask* taskStored);
 
 public:

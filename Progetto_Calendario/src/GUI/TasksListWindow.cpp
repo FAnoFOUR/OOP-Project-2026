@@ -88,5 +88,9 @@ Filter TasksListWindow::getFilterValues(){
     return filterValues;
 }
 
+TasksList* TasksListWindow::getTaskList(){
+    return taskListContainer;
+}
+
 
 TasksListWindow::~TasksListWindow() {};
