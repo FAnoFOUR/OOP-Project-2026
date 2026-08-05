@@ -20,9 +20,15 @@ void Deadline::setCompleted(const bool& newCompleted)     { completed  = newComp
 void Deadline::setSkipped  (const bool& newSkipped)       { skipped    = newSkipped;    }
 
 bool Deadline::isOverdue() const {
-    return false; // placeholder
+    if (!dueDate.isValid())
+        return false;
+
+    return QDate::currentDate() > dueDate;
 }
 
 int Deadline::daysRemaining() const {
-    return 0; // placeholder
+    if (!dueDate.isValid())
+        return 0;
+
+    return QDate::currentDate().daysTo(dueDate);
 }

@@ -19,10 +19,11 @@ void TasksListWindow::setupUI(){
     //TaskList
     taskListContainer = new TasksList();
     connect(taskListContainer, &TasksList::taskToShow, this, &TasksListWindow::taskToShow);
+
     //scrollArea
     scrollArea = new QScrollArea(this);
-    scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(taskListContainer);
+    scrollArea->setWidgetResizable(true);
 
     //Search Button
     searchButton = new QPushButton();

@@ -20,9 +20,11 @@ void TimedTask::setStartTime (const string& newStartTime) { startTime     = newS
 void TimedTask::setDuration  (const int& newDuration)     { totalDuration = newDuration;  }
 
 bool TimedTask::isOngoing() const {
-    return false; // placeholder
+    QDate today = QDate::currentDate();
+
+    return today >= startDate && today <= endDate;
 }
 
 bool TimedTask::overlapsWith(TimedTask& other) const {
-    return false; // placeholder
+    return !(endDate < other.startDate || startDate > other.endDate);
 }

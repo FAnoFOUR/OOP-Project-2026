@@ -1,7 +1,9 @@
 #include "data_persistancy/ConstVisitor.h"
+#include "Headers/TaskListManager.h"
 #include "Headers/Work.h"
 #include <iostream>
 #include <algorithm>
+
 using std::cout;
 using std::endl;
 
@@ -43,7 +45,7 @@ bool Work::removeSubTask(const QString& task) {
     return false;
 }
 bool Work::remove() {
-    return true; // placeholder
+    return TaskListManager::getInstance().removeTask(getId());
 }
 
 void Work::accept(ConstVisitor &v) {
