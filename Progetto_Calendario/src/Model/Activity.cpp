@@ -1,4 +1,5 @@
 #include "data_persistancy/ConstVisitor.h"
+#include "Headers/TaskListManager.h"
 #include "Headers/Activity.h"
 #include <iostream>
 using std::cout;
@@ -30,7 +31,7 @@ void Activity::setOnline          (const bool& newOnline)              { online 
 void Activity::setMeetingLink     (const string& newMeetingLink)       { meetingLink      = newMeetingLink;      }
 
 bool Activity::remove() {
-    return true; // placeholder
+    return TaskListManager::getInstance().removeTask(getId());
 }
 
 void Activity::accept(ConstVisitor& v) {

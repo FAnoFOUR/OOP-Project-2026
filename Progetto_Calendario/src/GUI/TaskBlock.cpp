@@ -243,3 +243,5 @@ QString TaskBlock::getTitle() const{
 int TaskBlock::getType() const{
     return types.indexOf(type->text());
 }
+
+

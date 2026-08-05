@@ -1,4 +1,5 @@
 #include "data_persistancy/ConstVisitor.h"
+#include "Headers/TaskListManager.h"
 #include "Headers/Bill.h"
 #include <iostream>
 using std::cout;
@@ -35,7 +36,7 @@ bool Bill::pay() {
 }
 
 bool Bill::remove() {
-    return true; // placeholder
+    return TaskListManager::getInstance().removeTask(getId());
 }
 
 void Bill::accept(ConstVisitor& v) {

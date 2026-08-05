@@ -1,4 +1,5 @@
 #include "data_persistancy/ConstVisitor.h"
+#include "Headers/TaskListManager.h"
 #include "Headers/Reminder.h"
 #include <iostream>
 using std::cout;
@@ -37,7 +38,7 @@ void Reminder::snooze(int min) {
 }
 
 bool Reminder::remove() {
-    return true; // placeholder
+    return TaskListManager::getInstance().removeTask(getId());
 }
 
 void Reminder::accept(ConstVisitor& v) {

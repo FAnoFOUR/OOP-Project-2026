@@ -1,5 +1,6 @@
 #include "data_persistancy/ConstVisitor.h"
 #include "qcontainerfwd.h"
+#include "Headers/TaskListManager.h"
 #include "Headers/Project.h"
 #include <iostream>
 #include <algorithm>
@@ -47,7 +48,7 @@ void Project::addTag(const QString& tag) {
 }
 
 bool Project::remove() {
-    return true; // placeholder
+    return TaskListManager::getInstance().removeTask(getId());
 }
 
 void Project::accept(ConstVisitor& v) {
