@@ -7,7 +7,6 @@ CONFIG += c++17
 HEADERS += \
     src/GUI/AddTask/TaskCreationWindow.h \
     src/GUI/AddTask/TypeSelectionPopup.h \
-    src/GUI/ConfirmPopup.h \
     src/GUI/GuiVisitors/BlockVisitor.h \
     src/GUI/GuiVisitors/DetailVisitor.h \
     src/GUI/GuiVisitors/EditVisitor.h \
@@ -52,7 +51,6 @@ HEADERS += \
     src/GUI/ToolBar.h \
 
 SOURCES += \
-    src/GUI/ConfirmPopup.cpp \
     src/GUI/GuiVisitors/BlockVisitor.cpp \
     src/GUI/GuiVisitors/DetailVisitor.cpp \
     src/GUI/GuiVisitors/EditVisitor.cpp \
