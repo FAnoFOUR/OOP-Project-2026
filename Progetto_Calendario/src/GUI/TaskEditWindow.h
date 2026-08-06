@@ -3,7 +3,6 @@
 
 #include "GUI/GuiVisitors/EditVisitor.h"
 #include "Model/Headers/AbstractTask.h"
-#include "ConfirmPopup.h"
 
 #include <QWidget>
 #include <QPushButton>
@@ -13,6 +12,7 @@ class TaskEditWindow: public QFrame{
     Q_OBJECT
 
 private:
+    AbstractTask *savedTask = nullptr;
 
     EditVisitor visitor;
 
@@ -25,6 +25,7 @@ private:
     void editButtonLine();
 
     void confirmSave();
+    void confirmReset();
 
 signals:
     void emitClose();

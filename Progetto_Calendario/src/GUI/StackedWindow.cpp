@@ -1,6 +1,5 @@
 #include "StackedWindow.h"
 
-#include "Pages/DetailPage.h"
 #include <QScrollArea>
 
 //#include "../Model/Headers/TaskListManager.h"

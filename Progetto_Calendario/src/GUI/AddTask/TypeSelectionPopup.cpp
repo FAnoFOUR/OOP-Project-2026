@@ -26,7 +26,7 @@ TypeSelectionPopup::TypeSelectionPopup(QWidget *parent): QDialog(parent) {
                        "   border-color: #27ae60;"
                        "}");
 
-    QDialogButtonBox *dialogButton = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    QDialogButtonBox *dialogButton = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     dialogButton->setCenterButtons(true);
     connect(dialogButton, &QDialogButtonBox::accepted, this, &TypeSelectionPopup::typeSelected);
     connect(dialogButton, &QDialogButtonBox::accepted, this, &TypeSelectionPopup::accept);
