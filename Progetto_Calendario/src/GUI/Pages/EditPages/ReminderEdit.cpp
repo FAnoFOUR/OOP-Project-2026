@@ -1,6 +1,9 @@
 #include "ReminderEdit.h"
 
 ReminderEdit::ReminderEdit(Reminder *task, QWidget *parent): TimedEditPage(task, parent) {
+
+    savedReminder = task;
+
     setUp();
 
     if(task){
@@ -55,4 +58,18 @@ void ReminderEdit::createTask(){
                                          getStartDate(),getEndDate(),getStartTime(),getDuration(),
                                          getNotifyTime(),getalertMessage(),isSnoozed(),getSnoozeMinute());
     emit returnTask(newReminder);
+}
+
+void ReminderEdit::saveEdit(){
+    savedReminder->setTitle(getTitle());
+    savedReminder->setDescription(getDescription());
+    savedReminder->setAssignee(getAssignee());
+    savedReminder->setStartDate(getStartDate());
+    savedReminder->setEndDate(getEndDate());
+    savedReminder->setStartTime(getStartTime());
+    savedReminder->setDuration(getDuration());
+    savedReminder->setNotifyTime(getNotifyTime());
+    savedReminder->setAlertMessage(getalertMessage());
+    savedReminder->setSnoozed(isSnoozed());
+    savedReminder->setSnoozeMinutes(getSnoozeMinute());
 }

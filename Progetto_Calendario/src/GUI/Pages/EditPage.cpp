@@ -17,16 +17,18 @@ EditPage::EditPage(Activity *Activity, QWidget *parent): QWidget(parent), layout
     layout->addWidget(activityPage);
 
     //SAVE EDIT
-    //connect(this, &EditPage::confirmSave, activityPage, &ActivityEdit::saveEdit);
+    connect(this, &EditPage::confirmSave, activityPage, &ActivityEdit::saveEdit);
 
-    /*connect(this, &EditPage::createTask, activityPage, &ActivityEdit::createTask); WRONG
-    connect(activityPage, &ActivityEdit::returnTask, this, &EditPage::sendTask);*/
 }
 
 EditPage::EditPage(Reminder *Reminder, QWidget *parent): QWidget(parent), layout(new QStackedLayout(this)){
 
     ReminderEdit *reminderPage = new ReminderEdit(Reminder);
     layout->addWidget(reminderPage);
+
+    //SAVE EDIT
+    connect(this, &EditPage::confirmSave, reminderPage, &ReminderEdit::saveEdit);
+
 
 }
 
@@ -35,6 +37,10 @@ EditPage::EditPage(Work *Work, QWidget *parent): QWidget(parent), layout(new QSt
     WorkEdit *workPage = new WorkEdit(Work);
     layout->addWidget(workPage);
 
+    //SAVE EDIT
+    connect(this, &EditPage::confirmSave, workPage, &WorkEdit::saveEdit);
+
+
 }
 
 EditPage::EditPage(Bill *Bill, QWidget *parent): QWidget(parent), layout(new QStackedLayout(this)){
@@ -42,12 +48,20 @@ EditPage::EditPage(Bill *Bill, QWidget *parent): QWidget(parent), layout(new QSt
     BillEdit *billPage = new BillEdit(Bill);
     layout->addWidget(billPage);
 
+    //SAVE EDIT
+    connect(this, &EditPage::confirmSave, billPage, &BillEdit::saveEdit);
+
+
 }
 
 EditPage::EditPage(Project *Project, QWidget *parent): QWidget(parent), layout(new QStackedLayout(this)){
 
     ProjectEdit *projectPage = new ProjectEdit(Project);
     layout->addWidget(projectPage);
+
+    //SAVE EDIT
+    connect(this, &EditPage::confirmSave, projectPage, &ProjectEdit::saveEdit);
+
 
 }
 
@@ -115,4 +129,8 @@ void EditPage::setUpWorkEdit(){
 void EditPage::confirmCreation(){
     //! controllo correzione sei dati inseriti
     emit createTask();
+}
+
+void EditPage::save(){
+
 }

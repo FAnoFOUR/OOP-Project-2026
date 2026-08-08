@@ -11,6 +11,7 @@ class BillEdit: public DeadlineEditPage{
     Q_OBJECT
 
 private:
+    Bill *savedBill = nullptr;
 
     QSpinBox *amount = nullptr;
     QRadioButton *paid = nullptr;
@@ -22,6 +23,7 @@ private:
 
 public slots:
     void createTask();
+    void saveEdit();
 
 signals:
     void returnTask(Bill *task);
@@ -35,6 +37,7 @@ public:
 
     BillEdit(Bill *task, QWidget *parent = nullptr);
     BillEdit(QWidget *parent = nullptr);
+
 };
 
 #endif // BILLEDIT_H

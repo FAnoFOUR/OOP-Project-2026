@@ -1,8 +1,6 @@
 #ifndef STACKEDWINDOW_H
 #define STACKEDWINDOW_H
 
-#include "GUI/GuiVisitors/DetailVisitor.h"
-#include "GUI/GuiVisitors/EditVisitor.h"
 #include "Model/Headers/AbstractTask.h"
 #include <QWidget>
 #include <QStackedLayout>
@@ -18,7 +16,6 @@ class StackedWindow: public QWidget{
     Q_OBJECT
 
 private:
-    AbstractTask *savedTask = nullptr;
 
     QStackedLayout *stack = nullptr;
     QCalendarWidget *calendar = nullptr;
@@ -31,6 +28,8 @@ private:
 
     DetailPage* createDetailPage();
     EditPage* createEditPage();
+
+    void updateDetailPage(AbstractTask *taskToUpdate);
 
 signals:
     void unselectTaskBlock();

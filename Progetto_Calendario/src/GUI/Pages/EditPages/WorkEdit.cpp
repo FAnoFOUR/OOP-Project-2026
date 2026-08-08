@@ -5,6 +5,9 @@
 #include <QScrollArea>
 
 WorkEdit::WorkEdit(Work *task, QWidget *parent): RepeatableEditPage(task, parent) {
+
+    savedWork = task;
+
     setUp();
 
     if(task){
@@ -99,4 +102,19 @@ void WorkEdit::createTask(){
                              getWorkDays(),getIntervalDays(),getEndDate(),isActive(),
                              getSubTasks(), getProgress(),getClient(),getCategory(),getNotes());
     emit returnTask(newWork);
+}
+
+void WorkEdit::saveEdit(){
+    savedWork->setTitle(getTitle());
+    savedWork->setDescription(getDescription());
+    savedWork->setAssignee(getAssignee());
+    savedWork->setWeekDays(getWorkDays());
+    savedWork->setIntervalDays(getIntervalDays());
+    savedWork->setRepeatEndDate(getEndDate());
+    savedWork->setActive(isActive());
+    savedWork->setSubTasks(getSubTasks());
+    savedWork->setProgress(getProgress());
+    savedWork->setClient(getClient());
+    savedWork->setCategory(getCategory());
+    savedWork->setNotes(getNotes());
 }

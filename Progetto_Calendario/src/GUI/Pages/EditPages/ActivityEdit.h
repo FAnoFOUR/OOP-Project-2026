@@ -11,6 +11,9 @@ class ActivityEdit: public TimedEditPage{
     Q_OBJECT
 
 private:
+
+    Activity *savedActivity = nullptr;
+
     QLineEdit *location = nullptr;
     QSpinBox *partecipationCount = nullptr;
     QLineEdit *eventType = nullptr;
@@ -21,6 +24,7 @@ private:
 
 public slots:
     void createTask();
+    void saveEdit();
 
 signals:
     void returnTask(Activity *task);

@@ -11,6 +11,8 @@ class ProjectEdit: public DeadlineEditPage{
     Q_OBJECT
 
 private:
+    Project *savedProject = nullptr;
+
     QLineEdit *milestone = nullptr;
     QLineEdit *team = nullptr;
     QSpinBox *budget = nullptr;
@@ -28,6 +30,7 @@ private slots:
 
 public slots:
     void createTask();
+    void saveEdit();
 
 signals:
     void returnTask(Project *task);

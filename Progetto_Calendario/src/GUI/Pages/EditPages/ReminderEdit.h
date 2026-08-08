@@ -11,6 +11,8 @@ class ReminderEdit: public TimedEditPage{
     Q_OBJECT
 
 private:
+    Reminder *savedReminder = nullptr;
+
     QLineEdit *notifyTime = nullptr;
     QLineEdit *alertMessage = nullptr;
     QRadioButton *snoozed = nullptr;
@@ -20,6 +22,7 @@ private:
 
 public slots:
     void createTask();
+    void saveEdit();
 
 signals:
     void returnTask(Reminder *task);

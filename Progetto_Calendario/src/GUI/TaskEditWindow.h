@@ -29,6 +29,8 @@ private:
 
 signals:
     void emitClose();
+    void signalSave();
+    void updateDetail(AbstractTask* taskToUpdate);
 
 public slots:
     void showTask(AbstractTask* task);

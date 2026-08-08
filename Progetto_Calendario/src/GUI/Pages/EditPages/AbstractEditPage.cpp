@@ -43,3 +43,5 @@ std::string AbstractEditPage::getDescription() const{
 std::string AbstractEditPage::getAssignee() const{
     return assignee->text().toStdString();
 }
+
+

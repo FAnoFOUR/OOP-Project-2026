@@ -1,6 +1,9 @@
 #include "BillEdit.h"
 
 BillEdit::BillEdit(Bill *task, QWidget *parent): DeadlineEditPage(task,parent) {
+
+    savedBill = task;
+
     setUp();
 
     if(task){
@@ -64,4 +67,20 @@ void BillEdit::createTask(){
                              getDueDate(),static_cast<Deadline::Priority>(getPriority()),isCompleted(),isSkipped(),
                              getAmount(),isPaid(),getProvider(),getIban(),isRecurring());
     emit returnTask(newBill);
+}
+
+void BillEdit::saveEdit(){
+
+    savedBill->setTitle(getTitle());
+    savedBill->setDescription(getDescription());
+    savedBill->setAssignee(getAssignee());
+    savedBill->setDueDate(getDueDate());
+    savedBill->setPriority(Deadline::Priority(getPriority()));
+    savedBill->setCompleted(isCompleted());
+    savedBill->setSkipped(isSkipped());
+    savedBill->setAmount(getAmount());
+    savedBill->setPaid(isPaid());
+    savedBill->setProvider(getProvider());
+    savedBill->setIBAN(getIban());
+    savedBill->setRecurring(isRecurring());
 }

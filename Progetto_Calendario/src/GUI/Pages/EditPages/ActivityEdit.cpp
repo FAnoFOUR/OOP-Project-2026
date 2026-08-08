@@ -2,6 +2,8 @@
 
 ActivityEdit::ActivityEdit(Activity *task, QWidget *parent): TimedEditPage(task, parent) {
 
+    savedActivity =  task;
+
     setUp();
 
     if(task){
@@ -62,4 +64,20 @@ void ActivityEdit::createTask(){
                                          getStartDate(),getEndDate(),getStartTime(),getDuration(),
                                          getLocation(),getPartecipationCount(),getEventType(),isOnline(),getMeetingLink());
     emit returnTask(newActivity);
+}
+
+void ActivityEdit::saveEdit(){
+
+    savedActivity->setTitle(getTitle());
+    savedActivity->setDescription(getDescription());
+    savedActivity->setAssignee(getAssignee());
+    savedActivity->setStartDate(getStartDate());
+    savedActivity->setEndDate(getEndDate());
+    savedActivity->setStartTime(getStartTime());
+    savedActivity->setDuration(getDuration());
+    savedActivity->setLocation(getLocation());
+    savedActivity->setParticipantCount(getPartecipationCount());
+    savedActivity->setEventType(getEventType());
+    savedActivity->setOnline(isOnline());
+    savedActivity->setMeetingLink(getMeetingLink());
 }

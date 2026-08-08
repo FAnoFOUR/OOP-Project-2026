@@ -4,6 +4,9 @@
 #include <QScrollArea>
 
 ProjectEdit::ProjectEdit(Project *task, QWidget *parent): DeadlineEditPage(task,parent) {
+
+    savedProject = task;
+
     setUp();
 
     if(task){
@@ -138,4 +141,24 @@ void ProjectEdit::createTask(){
                              getDueDate(),static_cast<Deadline::Priority>(getPriority()),isCompleted(),isSkipped(),
                              getMilestone(),getTeam(),getBudget(),getStatus(),getTags());
     emit returnTask(newProject);
+}
+
+void ProjectEdit::saveEdit(){
+
+    savedProject->setTitle(getTitle());
+    savedProject->setDescription(getDescription());
+    savedProject->setAssignee(getAssignee());
+    savedProject->setDueDate(getDueDate());
+    savedProject->setPriority(Deadline::Priority(getPriority()));
+    savedProject->setCompleted(isCompleted());
+    savedProject->setSkipped(isSkipped());
+    savedProject->setMilestone(getMilestone());
+    for(const auto &member : getTeam()){
+        savedProject->addMember(member);
+    }
+    savedProject->setBudget(getBudget());
+    savedProject->setStatus(getStatus());
+    for(const auto &tag : getTags()){
+        savedProject->addTag(tag);
+    }
 }

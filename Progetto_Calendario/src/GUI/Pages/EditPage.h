@@ -30,6 +30,7 @@ public slots:
 signals:
     void createTask();
     void sendTask(AbstractTask *task);
+    void confirmSave();
 
 public:
     EditPage(QString type, QWidget *parent = nullptr);
@@ -39,6 +40,8 @@ public:
     EditPage(Work *Work, QWidget *parent = nullptr);
     EditPage(Bill *Bill, QWidget *parent = nullptr);
     EditPage(Project *Project, QWidget *parent = nullptr);
+
+    void save();
 };
 
 #endif // EDITPAGEITPAGE_H

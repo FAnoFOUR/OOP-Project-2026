@@ -10,6 +10,8 @@ class WorkEdit: public RepeatableEditPage{
     Q_OBJECT
 
 private:
+    Work *savedWork = nullptr;
+
     QVBoxLayout *subTasksScrollAreaLayout = nullptr;
     QLineEdit *subTaskToAdd = nullptr;
     QSpinBox *progress = nullptr;
@@ -24,6 +26,7 @@ private slots:
 
 public slots:
     void createTask();
+    void saveEdit();
 
 signals:
     void returnTask(Work *task);

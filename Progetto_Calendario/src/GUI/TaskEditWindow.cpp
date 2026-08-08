@@ -39,6 +39,7 @@ void TaskEditWindow::showTask(AbstractTask* task){
     savedTask = task;
     task->accept(visitor);
     editScrollArea->setWidget(visitor.getEditPage());
+    connect(this, &TaskEditWindow::signalSave, visitor.getEditPage(), &EditPage::confirmSave);
 }
 
 void TaskEditWindow::confirmSave(){
@@ -48,7 +49,9 @@ void TaskEditWindow::confirmSave(){
     confirmSavePopup->setAttribute(Qt::WA_DeleteOnClose, true);
     if (confirmSavePopup->exec() == QMessageBox::Yes){
         qDebug()<<"Accepted Save";
-        //connect(typePopup, &TypeSelectionPopup::createTaskSignal, TaskCreationWindowObject, &TaskCreationWindow::createTask);
+        emit signalSave();
+        emit emitClose();
+        emit updateDetail(savedTask);
     }
 }
 
@@ -60,6 +63,5 @@ void TaskEditWindow::confirmReset(){
     if (confirmResetPopup->exec() == QMessageBox::Yes){
         qDebug()<<"Accepted Reset";
         showTask(savedTask);
-        //emit emitClose();
     }
 }
