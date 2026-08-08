@@ -9,6 +9,28 @@
 #include <QRadioButton>
 #include <QComboBox>
 
+void DetailPage::setReadOnly()
+{
+    const auto widgets = findChildren<QWidget*>();
+
+    for (QWidget *widget : widgets) {
+
+        if (auto *lineEdit = qobject_cast<QLineEdit*>(widget)) {
+            lineEdit->setReadOnly(true);
+        }
+        else if (auto *spinBox = qobject_cast<QSpinBox*>(widget)) {
+            spinBox->setReadOnly(true);
+            spinBox->setButtonSymbols(QAbstractSpinBox::NoButtons);
+        }
+        else if (auto *checkBox = qobject_cast<QCheckBox*>(widget)) {
+            checkBox->setEnabled(false);
+        }
+        else if (auto *radioButton = qobject_cast<QRadioButton*>(widget)) {
+            radioButton->setEnabled(false);
+        }
+    }
+}
+
 DetailPage::DetailPage(const Activity *Activity, QWidget *parent): QWidget(parent), page(new QVBoxLayout(this)){
 
     timedBase(Activity);
@@ -35,6 +57,8 @@ DetailPage::DetailPage(const Activity *Activity, QWidget *parent): QWidget(paren
     page->addWidget(isOnline);
     page->addWidget(new QLabel("Meeting Link:"));
     page->addWidget(meetingLink);
+
+    setReadOnly();
 }
 
 DetailPage::DetailPage(const Reminder *Reminder, QWidget *parent): QWidget(parent), page(new QVBoxLayout(this)){
@@ -59,6 +83,8 @@ DetailPage::DetailPage(const Reminder *Reminder, QWidget *parent): QWidget(paren
     page->addWidget(snoozed);
     page->addWidget(new QLabel("Minute Before Time:"));
     page->addWidget(snoozeMinute);
+
+    setReadOnly();
 }
 
 DetailPage::DetailPage(const Work *Work, QWidget *parent): QWidget(parent), page(new QVBoxLayout(this)){
@@ -87,6 +113,8 @@ DetailPage::DetailPage(const Work *Work, QWidget *parent): QWidget(parent), page
     page->addWidget(category);
     page->addWidget(new QLabel("Notes:"));
     page->addWidget(notes);
+
+    setReadOnly();
 }
 
 DetailPage::DetailPage(const Bill *Bill, QWidget *parent): QWidget(parent), page(new QVBoxLayout(this)){
@@ -115,6 +143,8 @@ DetailPage::DetailPage(const Bill *Bill, QWidget *parent): QWidget(parent), page
     page->addWidget(iban);
     page->addWidget(new QLabel("Is Recurring:"));
     page->addWidget(recurring);
+
+    setReadOnly();
 }
 
 DetailPage::DetailPage(const Project *Project, QWidget *parent): QWidget(parent), page(new QVBoxLayout(this)){
@@ -143,6 +173,8 @@ DetailPage::DetailPage(const Project *Project, QWidget *parent): QWidget(parent)
     page->addWidget(status);
     page->addWidget(new QLabel("Tags:"));
     page->addWidget(tags);
+
+    setReadOnly();
 }
 
 
@@ -163,7 +195,6 @@ void DetailPage::abstractBase(const AbstractTask *task){
     page->addLayout(line);
     page->addWidget(new QLabel("Creation Date")); //outo-assigned
     page->addWidget(creationDate);
-
 }
 
 void DetailPage::timedBase(const TimedTask *task){
@@ -188,7 +219,6 @@ void DetailPage::timedBase(const TimedTask *task){
     line2->addWidget(new QLabel("Duration"));
     line2->addWidget(duration);
     page->addLayout(line2);
-
 }
 
 void DetailPage::repeatableBase(const RepeatableTask *task){
@@ -215,7 +245,6 @@ void DetailPage::repeatableBase(const RepeatableTask *task){
     page->addWidget(endDate);
     page->addWidget(new QLabel("Is Active:"));
     page->addWidget(active);
-
 }
 
 void DetailPage::deadlineBase(const Deadline *task){
@@ -246,5 +275,4 @@ void DetailPage::deadlineBase(const Deadline *task){
     page->addWidget(completed);
     page->addWidget(new QLabel("Is Skipped:"));
     page->addWidget(skipped);
-
 }

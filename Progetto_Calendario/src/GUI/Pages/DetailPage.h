@@ -21,6 +21,8 @@ private:
     void repeatableBase(const RepeatableTask *task = nullptr);
     void deadlineBase(const Deadline *task = nullptr);
 
+    void setReadOnly();
+
     QVBoxLayout *page = nullptr;
 
 
