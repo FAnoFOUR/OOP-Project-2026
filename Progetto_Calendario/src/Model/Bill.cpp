@@ -46,3 +46,6 @@ void Bill::accept(ConstVisitor& v) {
 void Bill::accept(Visitor &v) {
     v.visit(this);
 }
+
+Bill::~Bill(){
+}

@@ -16,6 +16,7 @@ private:
     string category;
     string notes;
 
+
 public:
     Work(string title, string description,
          string assignee, QDate creationDate,
@@ -23,7 +24,7 @@ public:
          QDate repeatEndDate, bool active,
          QStringList subTasks, int progress,
          string client, string category, string notes);
-    virtual ~Work() = default;
+    virtual ~Work() override;
 
     QStringList getSubTasks()  const;
     int            getProgress()  const;

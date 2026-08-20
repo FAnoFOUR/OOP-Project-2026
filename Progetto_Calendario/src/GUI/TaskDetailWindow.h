@@ -24,10 +24,13 @@ private:
 
     void detailButtonLine();
 
-    void sendSavedTask();
+    void showEditWindow();
+
+    void confirmRemove();
 
 signals:
     void emitClose();
+    void removeTask(AbstractTask* task);
     void editTask(AbstractTask* task);
 
 public slots:

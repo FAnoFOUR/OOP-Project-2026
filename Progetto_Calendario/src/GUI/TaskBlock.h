@@ -35,7 +35,7 @@ private:
 
     void setUp();
 
-    //virtual bool event(QEvent* event) override;
+    void deleteThis();
 
 protected:
     //virtual void mousePressEvent(QMouseEvent *event) override;
@@ -54,6 +54,8 @@ public:
     QString getTitle() const;
     int extracted() const;
     int getType() const;
+
+    AbstractTask* getSavedTask();
 
     void selected();
     void unselected();

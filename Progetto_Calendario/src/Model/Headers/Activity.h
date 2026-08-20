@@ -20,7 +20,7 @@ public:
              string startTime, int totalDuration,
              string location, int participantCount,
              string eventType, bool online, string meetingLink);
-    virtual ~Activity() = default;
+    virtual ~Activity() override;
 
     string getLocation()         const;
     int    getParticipantCount() const;

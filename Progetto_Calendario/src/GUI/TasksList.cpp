@@ -55,6 +55,15 @@ void TasksList::addTask(AbstractTask* task){
     addTask(blockVisitor.getTaskBlock());
 }
 
+void TasksList::removeTask(AbstractTask* taskToRemove){
+
+    for(auto it = list.begin(); it != list.end(); ++it){
+        if((*it)->getSavedTask()->getId() == taskToRemove->getId()){
+            list.erase(it);
+            list.squeeze();
+        }
+    }
+}
 
 void TasksList::selected(TaskBlock* task){
     if(!selectedTaskBlock || selectedTaskBlock != task){

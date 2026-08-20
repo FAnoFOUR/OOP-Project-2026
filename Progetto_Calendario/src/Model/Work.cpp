@@ -55,3 +55,7 @@ void Work::accept(ConstVisitor &v) {
 void Work::accept(Visitor &v) {
     v.visit(this);
 }
+
+Work::~Work(){
+    subTasks.clear();
+}

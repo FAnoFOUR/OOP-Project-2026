@@ -33,6 +33,8 @@ private:
 
     //Rightside
     StackedWindow *stackWindow = nullptr;
+
+    void removeTask(AbstractTask* taskToRemove);
 };
 
 #endif // MAINWINDOW_H

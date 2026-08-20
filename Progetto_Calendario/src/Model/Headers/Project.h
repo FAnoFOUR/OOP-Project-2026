@@ -23,7 +23,7 @@ public:
             bool completed, bool skipped,
             string milestone, QStringList team,
             double budget, string status, QStringList tags);
-    virtual ~Project() = default;
+    virtual ~Project() override;
 
     string         getMilestone() const;
     QStringList    getTeam()      const;

@@ -30,8 +30,12 @@ MainWindow::MainWindow(QWidget *parent)
     splitter->addWidget(stackWindow);
     connect(taskListWindow, &TasksListWindow::taskToShow, stackWindow, &StackedWindow::showDetailWindow);
     connect(stackWindow, &StackedWindow::unselectTaskBlock, taskListWindow->getTaskList(), &TasksList::unselect);
+    connect(stackWindow, &StackedWindow::removeTask, this, &MainWindow::removeTask);
+    connect(stackWindow, &StackedWindow::removeTask, taskListWindow->getTaskList(), &TasksList::removeTask);
 
     setMinimumSize(920,600);
+
+    qDebug()<<TaskListManager::getInstance().getTaskList().size();
 }
 
 void MainWindow::showTypeSelect(){
@@ -59,7 +63,9 @@ void MainWindow::addTask(AbstractTask* task){
     taskListWindow->addTask(task);
 }
 
-
+void MainWindow::removeTask(AbstractTask* taskToRemove){
+    TaskListManager::getInstance().removeTask(taskToRemove->getId());
+}
 
 void MainWindow::saveToFile(){
     QString file = QFileDialog::getSaveFileName(

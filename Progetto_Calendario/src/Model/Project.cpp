@@ -58,3 +58,8 @@ void Project::accept(ConstVisitor& v) {
 void Project::accept(Visitor &v) {
     v.visit(this);
 }
+
+Project::~Project(){
+    team.clear();
+    tags.clear();
+}

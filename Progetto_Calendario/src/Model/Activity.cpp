@@ -42,3 +42,5 @@ void Activity::accept(Visitor &v) {
     v.visit(this);
 }
 
+Activity::~Activity(){
+}

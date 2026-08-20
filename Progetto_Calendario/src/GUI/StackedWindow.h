@@ -33,6 +33,7 @@ private:
 
 signals:
     void unselectTaskBlock();
+    void removeTask(AbstractTask* task);
 
 public slots:
     void showDetailWindow(AbstractTask *task);

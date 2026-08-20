@@ -48,3 +48,6 @@ void Reminder::accept(ConstVisitor& v) {
 void Reminder::accept(Visitor &v) {
     v.visit(this);
 }
+
+Reminder::~Reminder(){
+}

@@ -20,7 +20,7 @@ public:
          bool completed, bool skipped,
          double amount, bool paid,
          string provider, string IBAN, bool recurring);
-    virtual ~Bill() = default;
+    virtual ~Bill() override;
 
     double getAmount()   const;
     bool   isPaid()      const;

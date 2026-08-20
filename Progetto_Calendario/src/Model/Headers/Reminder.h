@@ -12,6 +12,7 @@ private:
     bool snoozed;
     int snoozeMinutes;
 
+
 public:
     Reminder(string title, string description,
              string assignee, QDate creationDate,
@@ -19,7 +20,7 @@ public:
              string startTime, int totalDuration,
              string notifyTime, string alertMessage,
              bool snoozed, int snoozeMinutes);
-    virtual ~Reminder() = default;
+    virtual ~Reminder() override;
 
     string getNotifyTime()    const;
     string getAlertMessage()  const;

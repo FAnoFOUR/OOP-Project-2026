@@ -18,3 +18,7 @@ void RepeatableTask::setWeekDays     (const QBitArray& newWeekDays)         { we
 void RepeatableTask::setIntervalDays (const int& newIntervalDays)           { intervalDays  = newIntervalDays;  }
 void RepeatableTask::setRepeatEndDate(const QDate& newRepeatEndDate)       { repeatEndDate = newRepeatEndDate; }
 void RepeatableTask::setActive       (const bool& newActive)                { active        = newActive;        }
+
+RepeatableTask::~RepeatableTask(){
+    weekDays.clear();
+}

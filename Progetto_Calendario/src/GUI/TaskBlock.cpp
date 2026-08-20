@@ -45,6 +45,7 @@ TaskBlock::TaskBlock(Activity *task):
 
     outerBox->setContentsMargins(1,1,1,1);
     outerBox->setSpacing(0);
+
 }
 
 TaskBlock::TaskBlock(Reminder *task):
@@ -239,9 +240,12 @@ void TaskBlock::mousePressEvent(QMouseEvent *event){
 
 }
 */
+
+
 void TaskBlock::mouseDoubleClickEvent(QMouseEvent *event){
     emit doubleClicked(this);
     emit doubleClicked(taskStored);
+
 }
 
 void TaskBlock::selected(){
@@ -282,4 +286,6 @@ int TaskBlock::getType() const{
     return types.indexOf(type->text());
 }
 
-
+AbstractTask* TaskBlock::getSavedTask(){
+    return taskStored;
+}

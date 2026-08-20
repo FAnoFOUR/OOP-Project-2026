@@ -24,7 +24,7 @@ public:
                    string assignee, QDate creationDate,
                    QBitArray weekDays, int intervalDays,
                    QDate repeatEndDate, bool active);
-    virtual ~RepeatableTask() = default;
+    virtual ~RepeatableTask() override;
 
     QBitArray    getWeekDays()      const;
     int         getIntervalDays()  const;
@@ -35,10 +35,6 @@ public:
     void setIntervalDays (const int& newIntervalDays);
     void setRepeatEndDate(const QDate& newRepeatEndDate);
     void setActive       (const bool& newActive);
-
-    virtual bool remove()           = 0;
-    virtual void accept(ConstVisitor& v) = 0;
-    virtual void accept(Visitor& v) = 0;
 };
 
 #endif // REPEATABLETASK_H
