@@ -34,8 +34,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(stackWindow, &StackedWindow::removeTask, taskListWindow->getTaskList(), &TasksList::removeTask);
 
     setMinimumSize(920,600);
-
-    qDebug()<<TaskListManager::getInstance().getTaskList().size();
 }
 
 void MainWindow::showTypeSelect(){
@@ -95,11 +93,14 @@ void MainWindow::loadFromFile(){
 
     if (!file.isEmpty())
     {
-
-
         bool success = TaskListManager::getInstance().loadFromFile(file.toStdString());
         if (success){
             QMessageBox::information(this, "Success", "Content imported successfully");
+            taskListWindow->clearTaskList();
+            qDebug()<<TaskListManager::getInstance().getTaskList().size();
+            for(auto it : TaskListManager::getInstance().getTaskList()){
+                taskListWindow->addTask(it);
+            }
         }
         else{
             QMessageBox::warning(this, "Error", "Failed to import content");

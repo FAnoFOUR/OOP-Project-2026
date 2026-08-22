@@ -1,2 +1,19 @@
 [
+    {
+        "assignee": "IO",
+        "creationDate": "2026-08-22",
+        "description": "Desrizione",
+        "endDate": "2026-08-23",
+        "eventType": "Lavoro",
+        "id": 0,
+        "location": "Casa Mia",
+        "meetingLink": "Tua Madre",
+        "online": false,
+        "participantCount": 1,
+        "startDate": "2026-08-22",
+        "startTime": "15.00",
+        "title": "Titolo Attività",
+        "totalDuration": 60,
+        "type": "Activity"
+    }
 ]

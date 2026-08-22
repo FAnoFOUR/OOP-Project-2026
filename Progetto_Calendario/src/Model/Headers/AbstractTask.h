@@ -9,7 +9,7 @@ using std::string;
 
 class AbstractTask {
 private:
-    string id;
+    unsigned int id;
     string title;
     string description;
     string assignee;
@@ -20,13 +20,13 @@ public:
                  string assignee, QDate creationDate);
     virtual ~AbstractTask() = default;
 
-    string getId()           const;
+    unsigned int getId()           const;
     string getTitle()        const;
     string getDescription()  const;
     string getAssignee()     const;
     QDate getCreationDate() const;
 
-    void setId         (const std::string& newId);
+    void setId         (const unsigned int &newId);
     void setTitle      (const string& newTitle);
     void setDescription(const string& newDesc);
     void setAssignee   (const string& newAssignee);

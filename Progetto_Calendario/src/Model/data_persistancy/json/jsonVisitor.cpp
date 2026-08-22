@@ -10,7 +10,7 @@ QJsonObject jsonVisitor::getObject() const {
 }
 
 void jsonVisitor::insertAbstract(const AbstractTask& A, QJsonObject& obj){
-    obj.insert("id",  QJsonValue::fromVariant(A.getId().c_str()));
+    obj.insert("id",  QJsonValue::fromVariant(A.getId()));
     obj.insert("title", QJsonValue::fromVariant(A.getTitle().c_str()));
     obj.insert("description", QJsonValue::fromVariant(A.getDescription().c_str()));
     obj.insert("assignee", QJsonValue::fromVariant(A.getAssignee().c_str()));

@@ -22,12 +22,12 @@ void TaskListManager::incrementID(){ //initialized at 0 by default
 void TaskListManager::addTask(AbstractTask* task) {
     if (!task) return;
 
-    task->setId(std::to_string(getID()));
+    task->setId((getID()));
     taskList.push_back(task);
     incrementID();
 }
 
-bool TaskListManager::removeTask(const std::string& id) {
+bool TaskListManager::removeTask(const unsigned int& id) {
     for (auto it = taskList.begin(); it != taskList.end(); ++it) {
         if ((*it)->getId() == id) {
             delete *it;
@@ -43,9 +43,6 @@ const std::vector<AbstractTask*>& TaskListManager::getTaskList() const {
 }
 
 void TaskListManager::clearList() {
-    for (auto task : taskList) {
-        delete task;
-    }
     taskList.clear();
 }
 
@@ -137,7 +134,7 @@ bool TaskListManager::loadFromFile(const string& filepath){ //Loads the library 
 }
 
 
-AbstractTask* TaskListManager::getTaskById(const std::string& id) const {
+AbstractTask* TaskListManager::getTaskById(const unsigned int& id) const {
     for (auto task : taskList) {
         if (task->getId() == id)
             return task;

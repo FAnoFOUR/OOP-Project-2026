@@ -68,6 +68,10 @@ void TasksListWindow::addTask(AbstractTask* task){
     taskListContainer->addTask(task);
 }
 
+void TasksListWindow::clearTaskList(){
+    taskListContainer->getList().clear();
+}
+
 void TasksListWindow::toggleFilter(){
     if(filterWindow->isVisible()){
         filterWindow->setVisible(false);
@@ -94,4 +98,6 @@ TasksList* TasksListWindow::getTaskList(){
 }
 
 
-TasksListWindow::~TasksListWindow() {};
+TasksListWindow::~TasksListWindow() {
+    clearTaskList();
+};

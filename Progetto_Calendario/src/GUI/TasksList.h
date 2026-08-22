@@ -47,7 +47,7 @@ public:
     void addTask(TaskBlock* task);
     void addTask(AbstractTask* task);
 
-    void fillContainer(QList<TaskBlock*> list);
+    QList<TaskBlock*> getList();
 
     TasksList(QWidget *parent = nullptr);
 };

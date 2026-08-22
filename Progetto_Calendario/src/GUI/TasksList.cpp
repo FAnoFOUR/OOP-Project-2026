@@ -16,9 +16,9 @@ TasksList::TasksList(QWidget *parent): QWidget(parent), containerLayout(new QVBo
     addTask(four);
 */
 
-    addTask(new Activity("Titolo Attività", "Desrizione", "IO", QDate::currentDate(), QDate::currentDate(), QDate::currentDate().addDays(1),
+    /*addTask(new Activity("Titolo Attività", "Desrizione", "IO", QDate::currentDate(), QDate::currentDate(), QDate::currentDate().addDays(1),
                          "15.00", 60, "Casa Mia", 1, "Lavoro", false, "Tua Madre"));
-
+*/
 
     containerLayout->setSpacing(5);
     containerLayout->setAlignment(Qt::AlignTop);
@@ -63,6 +63,10 @@ void TasksList::removeTask(AbstractTask* taskToRemove){
             list.squeeze();
         }
     }
+}
+
+QList<TaskBlock*> TasksList::getList(){
+    return list;
 }
 
 void TasksList::selected(TaskBlock* task){

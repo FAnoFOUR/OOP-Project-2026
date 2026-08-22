@@ -150,7 +150,7 @@ QList<AbstractTask*> JsonReader::readAll(const QString& filename) {
 
     QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
     file.close();
-
+    qDebug()<<doc;
     if (doc.isNull() || !doc.isArray()) {
         qDebug() << "File JSON non valido";
         return tasks;
@@ -160,13 +160,13 @@ QList<AbstractTask*> JsonReader::readAll(const QString& filename) {
         if (!val.isObject()) continue;
         QJsonObject obj  = val.toObject();
         QString     type = obj["type"].toString();
-
+        qDebug()<<type;
         AbstractTask* t = nullptr;
-        if      (type == "activity") t = readActivity(obj);
-        else if (type == "reminder") t = readReminder(obj);
-        else if (type == "work")     t = readWork(obj);
-        else if (type == "bill")     t = readBill(obj);
-        else if (type == "project")  t = readProject(obj);
+        if      (type == "Activity") t = readActivity(obj);
+        else if (type == "Reminder") t = readReminder(obj);
+        else if (type == "Work")     t = readWork(obj);
+        else if (type == "Bill")     t = readBill(obj);
+        else if (type == "Project")  t = readProject(obj);
 
         if (t != nullptr)
             tasks.append(t);

@@ -24,7 +24,7 @@ QDomDocument XmlVisitor::getDocument() const {
 
 void XmlVisitor::insertAbstract(const AbstractTask& A, QDomElement& el) {
 
-    el.setAttribute("id", QString::fromStdString(A.getId()));
+    el.setAttribute("id", (A.getId()));
     el.setAttribute("title", QString::fromStdString(A.getTitle()));
     el.setAttribute("description", QString::fromStdString(A.getDescription()));
     el.setAttribute("assignee", QString::fromStdString(A.getAssignee()));

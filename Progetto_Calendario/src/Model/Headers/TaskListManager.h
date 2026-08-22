@@ -22,7 +22,7 @@ public:
 
     void addTask(AbstractTask* task);
 
-    bool removeTask(const std::string& id);
+    bool removeTask(const unsigned int &id);
 
     const std::vector<AbstractTask*>& getTaskList() const;
 
@@ -36,7 +36,7 @@ public:
 
     void clearList();
 
-    AbstractTask* getTaskById(const std::string& id) const;
+    AbstractTask* getTaskById(const unsigned int &id) const;
 
     std::vector<AbstractTask*> findByTitle(const std::string& text) const;
 };
