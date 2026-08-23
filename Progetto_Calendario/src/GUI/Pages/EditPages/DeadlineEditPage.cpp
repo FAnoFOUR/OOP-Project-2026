@@ -24,6 +24,9 @@ void DeadlineEditPage::setUp(){
     prio->addItem("High");
     completed = new QRadioButton();
     skipped = new QRadioButton();
+    newButtonGroup = new QButtonGroup(this);
+    newButtonGroup->addButton(completed);
+    newButtonGroup->addButton(skipped);
 
     QHBoxLayout *lineDueDate = new QHBoxLayout();
     lineDueDate->setAlignment(Qt::AlignLeft | Qt::AlignJustify);

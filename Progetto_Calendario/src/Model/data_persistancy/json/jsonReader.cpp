@@ -27,8 +27,13 @@ JsonReader::RepeatableTaskData JsonReader::readRepeatableTaskData(const QJsonObj
     d.intervalDays  = obj["intervalDays"].toInt();
     d.repeatEndDate = QDate::fromString(obj["repeatEndDate"].toString(),"yyyy-MM-d");
     d.active        = obj["active"].toBool();
-    for (int i = 0; i < obj["weekDays"].toArray().size(); ++i)
-        d.weekDays.setBit(i, obj["weekDays"].toArray()[i].toBool());
+    QJsonArray a = obj["weekDays"].toArray();
+    qDebug()<<a.size();
+    d.weekDays.resize(7);
+    for (int i = 0; i < a.size(); ++i){
+        qDebug()<<a[i].toBool();
+        d.weekDays.setBit(i, a[i].toBool());
+    }
     return d;
 }
 

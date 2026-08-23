@@ -17,6 +17,7 @@ private:
     QComboBox *prio = nullptr;
     QRadioButton *completed = nullptr;
     QRadioButton *skipped = nullptr;
+    QButtonGroup *newButtonGroup = nullptr;
 
     void setUp();
 

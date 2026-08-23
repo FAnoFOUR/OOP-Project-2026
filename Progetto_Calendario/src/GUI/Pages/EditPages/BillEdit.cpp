@@ -23,6 +23,7 @@ void BillEdit::setUp(){
 
     amount = new QSpinBox();
     paid = new QRadioButton();
+    paid->setAutoExclusive(false);
     provider = new QLineEdit();
     iban = new QLineEdit();
     recurring = new QRadioButton();

@@ -76,7 +76,7 @@ void MainWindow::saveToFile(){
     {
         bool success = TaskListManager::getInstance().saveToFile(file.toStdString());
         if (success){
-            QMessageBox::information(this, "Success", "Content imported successfully");
+            QMessageBox::information(this, "Success", "Content saved successfully");
         }
         else{
             QMessageBox::warning(this, "Error", "Failed to import content");

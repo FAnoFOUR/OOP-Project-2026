@@ -236,7 +236,7 @@ void DetailPage::repeatableBase(const RepeatableTask *task){
         QCheckBox *day = new QCheckBox(daysNames[i]);
         day->setChecked(task->getWeekDays()[i]);
         weekDays->addWidget(day);
-        day->setCheckable(false);
+        //day->setCheckable(false);
     }
     page->addLayout(weekDays);
     page->addWidget(new QLabel("Interval:"));

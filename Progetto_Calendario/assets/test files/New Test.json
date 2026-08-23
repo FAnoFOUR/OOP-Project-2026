@@ -1,0 +1,98 @@
+[
+    {
+        "assignee": "Tony",
+        "creationDate": "2026-08-23",
+        "description": "Test1",
+        "endDate": "2026-08-24",
+        "eventType": "Null",
+        "id": 0,
+        "location": "Casa Mia",
+        "meetingLink": "",
+        "online": false,
+        "participantCount": 1,
+        "startDate": "2026-08-23",
+        "startTime": "11-48-0",
+        "title": "New Activity",
+        "totalDuration": 0,
+        "type": "Activity"
+    },
+    {
+        "active": true,
+        "assignee": "Tony",
+        "category": "Bho",
+        "client": "IO",
+        "creationDate": "2026-08-23",
+        "description": "Test1",
+        "id": 1,
+        "intervalDays": 0,
+        "notes": "Da dettagliare",
+        "progress": 0,
+        "repeatEndDate": "2026-12-30",
+        "title": "New Work",
+        "type": "Work",
+        "weekDays": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        ]
+    },
+    {
+        "IBAN": "",
+        "amount": 10,
+        "assignee": "Io",
+        "completed": false,
+        "creationDate": "2026-08-23",
+        "description": "Will be overdue",
+        "dueDate": "2026-09-07",
+        "id": 2,
+        "paid": true,
+        "priority": 2,
+        "provider": "",
+        "recurring": false,
+        "skipped": true,
+        "title": "New Bill",
+        "type": "Bill"
+    },
+    {
+        "assignee": "Il prof",
+        "budget": 0,
+        "completed": false,
+        "creationDate": "2026-08-23",
+        "description": "To Submit",
+        "dueDate": "2026-09-07",
+        "id": 3,
+        "milestone": "Bo",
+        "priority": 2,
+        "skipped": false,
+        "status": "Not Done",
+        "tag": [
+            "Not Done ☻"
+        ],
+        "team": [
+            "Io",
+            "Deg"
+        ],
+        "title": "New Project",
+        "type": "Project"
+    },
+    {
+        "alertMessage": "Svegliate e lavora DC",
+        "assignee": "io",
+        "creationDate": "2026-08-23",
+        "description": "Remind the project",
+        "endDate": "2026-09-01",
+        "id": 4,
+        "notifyTime": "",
+        "snoozed": false,
+        "snoozedMinute": 2,
+        "startDate": "2026-08-24",
+        "startTime": "12-0-0",
+        "title": "New Reminder",
+        "totalDuration": 1,
+        "type": "Reminder"
+    }
+]

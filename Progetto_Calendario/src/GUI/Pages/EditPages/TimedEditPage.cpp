@@ -22,8 +22,11 @@ TimedEditPage::TimedEditPage(QWidget *parent): AbstractEditPage(parent) {
 void TimedEditPage::setUp(){
 
     startDate = new QDateEdit();
+    startDate->setDate(QDate::currentDate());
     endDate = new QDateEdit();
+    endDate->setDate(QDate::currentDate().addDays(1));
     starTime = new QTimeEdit();
+    starTime->setTime(QTime(12,0,0));
     duration = new QSpinBox();
 
     QGridLayout *innerBox = new QGridLayout();
