@@ -30,8 +30,8 @@ MainWindow::MainWindow(QWidget *parent)
     splitter->addWidget(stackWindow);
     connect(taskListWindow, &TasksListWindow::taskToShow, stackWindow, &StackedWindow::showDetailWindow);
     connect(stackWindow, &StackedWindow::unselectTaskBlock, taskListWindow->getTaskList(), &TasksList::unselect);
-    connect(stackWindow, &StackedWindow::removeTask, this, &MainWindow::removeTask);
     connect(stackWindow, &StackedWindow::removeTask, taskListWindow->getTaskList(), &TasksList::removeTask);
+    connect(stackWindow, &StackedWindow::removeTask, this, &MainWindow::removeTask);
 
     setMinimumSize(920,600);
 }
@@ -62,6 +62,7 @@ void MainWindow::addTask(AbstractTask* task){
 }
 
 void MainWindow::removeTask(AbstractTask* taskToRemove){
+    qDebug()<<taskToRemove->getId();
     TaskListManager::getInstance().removeTask(taskToRemove->getId());
 }
 

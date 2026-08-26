@@ -57,8 +57,8 @@ void TaskDetailWindow::confirmRemove(){
         detailScrollArea->widget()->deleteLater();
         delete detailScrollArea->widget();
         detailScrollArea->setWidget(nullptr);
-        savedTask = nullptr;
 
         emit removeTask(savedTask);
+        savedTask = nullptr;
     }
 }

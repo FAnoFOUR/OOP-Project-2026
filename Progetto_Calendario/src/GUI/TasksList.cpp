@@ -56,11 +56,13 @@ void TasksList::addTask(AbstractTask* task){
 void TasksList::removeTask(AbstractTask* taskToRemove){
 
     for(auto it = list.begin(); it != list.end(); ++it){
+        qDebug()<<(*it)->getSavedTask()->getId()<<"  < Nella lista <---> Da eliminare >  "<<taskToRemove->getId();
         if((*it)->getSavedTask()->getId() == taskToRemove->getId()){
-            list.erase(it);
             containerLayout->removeWidget(*it);
             delete *it;
+            list.erase(it);
             list.squeeze();
+            break;
         }
     }
 }
