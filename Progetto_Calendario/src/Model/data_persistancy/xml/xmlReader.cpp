@@ -31,7 +31,7 @@ XmlReader::RepeatableTaskData XmlReader::readRepeatableTaskData(QXmlStreamReader
     d.active        = (attr.value("active").toString() == "true" || attr.value("active").toInt() == 1);
 
     QStringList split = attr.value("weekDays").toString().split(",", Qt::SkipEmptyParts);
-
+    d.weekDays.resize(7);
     for(int i = 0; i < split.size(); ++i){
         d.weekDays.setBit(i, split[i].toInt());
     }

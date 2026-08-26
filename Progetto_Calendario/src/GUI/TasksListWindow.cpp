@@ -69,7 +69,18 @@ void TasksListWindow::addTask(AbstractTask* task){
 }
 
 void TasksListWindow::clearTaskList(){
+    qDebug()<<"Numero di TaskBlock in List (Prima)"<<taskListContainer->getList().size();
+    QList<TaskBlock*> list = taskListContainer->getList();
     taskListContainer->getList().clear();
+    qDebug()<<"Numero di TaskBlock in List (Dopo)"<<taskListContainer->getList().size();
+
+    qDebug()<<"Numero di TaskBlock in Layout (Prima)"<<taskListContainer->getLayout()->count();
+    QLayoutItem *child;
+    while ((child = taskListContainer->getLayout()->takeAt(0)) != nullptr) {
+        delete child->widget(); // delete the widget
+        delete child;   // delete the layout item
+    }
+    qDebug()<<"Numero di TaskBlock in Layout (Dopo)"<<taskListContainer->getLayout()->count();
 }
 
 void TasksListWindow::toggleFilter(){

@@ -33,13 +33,11 @@ void TasksList::addTask(TaskBlock* taskBlock){
     if(list.isEmpty()){
         list.append(taskBlock);
         containerLayout->addWidget(taskBlock);
-    }else if(*list.last()->getEndDate() <= *taskBlock->getEndDate()){
+    }else if(list.last() && *list.last()->getEndDate() <= *taskBlock->getEndDate()){
         list.append(taskBlock);
         containerLayout->addWidget(taskBlock);
     }else{
         for(int i = 0; i < list.size(); ++i){
-            qDebug()<<*list[i]->getEndDate()<<*taskBlock->getEndDate();
-            qDebug()<<(*list[i]->getEndDate() >= *taskBlock->getEndDate());
             if(*taskBlock->getEndDate() <= *list[i]->getEndDate()){
                 list.insert(i, taskBlock);
                 containerLayout->insertWidget(i,taskBlock);
@@ -60,13 +58,19 @@ void TasksList::removeTask(AbstractTask* taskToRemove){
     for(auto it = list.begin(); it != list.end(); ++it){
         if((*it)->getSavedTask()->getId() == taskToRemove->getId()){
             list.erase(it);
+            containerLayout->removeWidget(*it);
+            delete *it;
             list.squeeze();
         }
     }
 }
 
-QList<TaskBlock*> TasksList::getList(){
+QList<TaskBlock*>& TasksList::getList(){
     return list;
+}
+
+QVBoxLayout* TasksList::getLayout(){
+    return containerLayout;
 }
 
 void TasksList::selected(TaskBlock* task){
@@ -92,21 +96,6 @@ bool TasksList::filter(Filter filterValues){
 
     QList<int> indexesShowed;
     bool isEmptiedLater = false;
-
-    if(filterValues.startDate){
-        qDebug()<<*filterValues.startDate;
-    }else{
-        qDebug()<<"nullptr";
-    }
-    if(filterValues.endDate){
-        qDebug()<<*filterValues.endDate;
-    }else{
-        qDebug()<<"nullptr";
-    }
-    qDebug()<<filterValues.type-1;
-    qDebug()<<filterValues.title;
-    qDebug()<<"---";
-
 
     //se l'input è errato non fa nulla
     if(filterValues.endDate && filterValues.startDate && *filterValues.startDate > *filterValues.endDate){
@@ -219,23 +208,16 @@ bool TasksList::filter(Filter filterValues){
         }else{
             int indexCount = indexesShowed.count();
             for(int it = 0; it < indexCount; ++it){
-                qDebug()<<indexesShowed.toList();
-                qDebug()<<"Iterator:"<<it;
-                qDebug()<<"Type:"<<list[it]->getType();
                 if(filterValues.type-1 != list[it]->getType()){
-                    qDebug()<<"Remove";
                     list[it]->hide();
                     indexesShowed.removeAll(it);
                 }else{
 
                     list[it]->show();
-                    qDebug()<<"Show";
                 }
             }
         }
     }
-
-    qDebug()<<indexesShowed.toList();
 
     if(!filterValues.title.isEmpty() && !filterValues.title.isNull()){
         if(indexesShowed.empty() &&  !isEmptiedLater){

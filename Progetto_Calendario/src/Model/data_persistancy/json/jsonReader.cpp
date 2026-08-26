@@ -28,10 +28,8 @@ JsonReader::RepeatableTaskData JsonReader::readRepeatableTaskData(const QJsonObj
     d.repeatEndDate = QDate::fromString(obj["repeatEndDate"].toString(),"yyyy-MM-d");
     d.active        = obj["active"].toBool();
     QJsonArray a = obj["weekDays"].toArray();
-    qDebug()<<a.size();
     d.weekDays.resize(7);
     for (int i = 0; i < a.size(); ++i){
-        qDebug()<<a[i].toBool();
         d.weekDays.setBit(i, a[i].toBool());
     }
     return d;
@@ -155,7 +153,6 @@ QList<AbstractTask*> JsonReader::readAll(const QString& filename) {
 
     QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
     file.close();
-    qDebug()<<doc;
     if (doc.isNull() || !doc.isArray()) {
         qDebug() << "File JSON non valido";
         return tasks;
@@ -165,7 +162,6 @@ QList<AbstractTask*> JsonReader::readAll(const QString& filename) {
         if (!val.isObject()) continue;
         QJsonObject obj  = val.toObject();
         QString     type = obj["type"].toString();
-        qDebug()<<type;
         AbstractTask* t = nullptr;
         if      (type == "Activity") t = readActivity(obj);
         else if (type == "Reminder") t = readReminder(obj);

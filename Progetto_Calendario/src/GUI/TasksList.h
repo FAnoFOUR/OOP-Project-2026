@@ -47,7 +47,8 @@ public:
     void addTask(TaskBlock* task);
     void addTask(AbstractTask* task);
 
-    QList<TaskBlock*> getList();
+    QList<TaskBlock*>& getList();
+    QVBoxLayout* getLayout();
 
     TasksList(QWidget *parent = nullptr);
 };

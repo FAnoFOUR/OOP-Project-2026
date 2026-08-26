@@ -106,8 +106,6 @@ bool TaskListManager::loadFromFile(const string& filepath){ //Loads the library 
 
         QList<AbstractTask*> tasks = reader.readAll(QString::fromStdString(filepath));
 
-        clearList();
-
         for (auto it = tasks.begin(); it != tasks.end(); ++it) {
             addTask(*it);
         }
@@ -120,8 +118,6 @@ bool TaskListManager::loadFromFile(const string& filepath){ //Loads the library 
         JsonReader reader;
 
         QList<AbstractTask*> tasks = reader.readAll(QString::fromStdString(filepath));
-
-        clearList();
 
         for (auto it = tasks.begin(); it != tasks.end(); ++it) {
             addTask(*it);
