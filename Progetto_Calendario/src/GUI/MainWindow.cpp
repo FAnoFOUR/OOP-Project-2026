@@ -32,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(stackWindow, &StackedWindow::unselectTaskBlock, taskListWindow->getTaskList(), &TasksList::unselect);
     connect(stackWindow, &StackedWindow::removeTask, taskListWindow->getTaskList(), &TasksList::removeTask);
     connect(stackWindow, &StackedWindow::removeTask, this, &MainWindow::removeTask);
+    connect(stackWindow, &StackedWindow::selectedFilterDate, taskListWindow, &TasksListWindow::filterByCalendar);
 
     setMinimumSize(920,600);
 }

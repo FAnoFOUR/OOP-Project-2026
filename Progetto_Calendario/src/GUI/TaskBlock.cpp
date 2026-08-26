@@ -21,7 +21,7 @@ TaskBlock::TaskBlock(Activity *task):
     QGridLayout *innerBox = new QGridLayout(block);
     innerBox->setAlignment(Qt::AlignHCenter);
 
-    QLabel *startDateLabel = new QLabel(endDate->toString("yyyy-MM-d"));
+    QLabel *startDateLabel = new QLabel(startDate->toString("yyyy-MM-d"));
     startDateLabel->setAlignment(Qt::AlignCenter);
 
     QLabel *endDateLabel = new QLabel(endDate->toString("yyyy-MM-d"));
@@ -60,7 +60,7 @@ TaskBlock::TaskBlock(Reminder *task):
     QGridLayout *innerBox = new QGridLayout(block);
     innerBox->setAlignment(Qt::AlignHCenter);
 
-    QLabel *startDateLabel = new QLabel(endDate->toString("yyyy-MM-d"));
+    QLabel *startDateLabel = new QLabel(startDate->toString("yyyy-MM-d"));
     startDateLabel->setAlignment(Qt::AlignCenter);
 
     QLabel *endDateLabel = new QLabel(endDate->toString("yyyy-MM-d"));
@@ -198,48 +198,6 @@ void TaskBlock::setUp(){
     block->setMaximumHeight(105);
 
 }
-/*
-QElapsedTimer timer;
-bool flagForSingleClick = false;
-
-bool TaskBlock::event(QEvent* event){
-
-
-    if(event->type() == QEvent::MouseButtonPress){
-        timer.restart();
-        flagForSingleClick = true;
-        qDebug()<<event->type()<<timer.elapsed();
-    }
-
-    if(event->type() == QEvent::MouseButtonDblClick){
-        qDebug()<<event->type()<<timer.elapsed();
-        emit clicked(this);
-        emit doubleClicked(taskStored);
-        flagForSingleClick = false;
-
-        if(timer.elapsed()<180){
-            emit clicked(this);
-            emit doubleClicked(taskStored);
-            flagForSingleClick = false;
-        }
-    }
-
-    if(flagForSingleClick && timer.elapsed()>180){
-        flagForSingleClick = false;
-        emit clicked(this);
-    }
-
-    return QWidget::event(event);
-}
-*/
-/*
-void TaskBlock::mousePressEvent(QMouseEvent *event){
-    if(event->button() == Qt::LeftButton){
-        emit clicked(this);
-    }
-
-}
-*/
 
 
 void TaskBlock::mouseDoubleClickEvent(QMouseEvent *event){

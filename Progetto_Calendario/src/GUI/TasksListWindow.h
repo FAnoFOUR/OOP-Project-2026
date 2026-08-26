@@ -29,6 +29,8 @@ private slots:
     //initiate search
     void search();
 
+public slots:
+    void filterByCalendar(QDate newDate);
 
 public:
     TasksListWindow(QWidget *parent = nullptr);

@@ -34,6 +34,7 @@ private:
 signals:
     void unselectTaskBlock();
     void removeTask(AbstractTask* task);
+    void selectedFilterDate(QDate newDate);
 
 public slots:
     void showDetailWindow(AbstractTask *task);

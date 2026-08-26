@@ -4,6 +4,7 @@
 #include <QPushButton>
 #include <QFrame>
 
+
 StackedWindow::StackedWindow(QWidget *parent): QWidget(parent) {
 
     stack = new QStackedLayout(this);
@@ -14,6 +15,9 @@ StackedWindow::StackedWindow(QWidget *parent): QWidget(parent) {
 
 
     layout->addWidget(calendar = new QCalendarWidget()); //index 0
+
+    connect(calendar, &QCalendarWidget::clicked, this, &StackedWindow::selectedFilterDate);
+
 
     stack->addWidget(first); // index 0
 

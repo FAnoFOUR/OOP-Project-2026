@@ -8,11 +8,11 @@
 
 FilterWindow::FilterWindow(QWidget *parent): QWidget(parent) {
 
-    stardDateSelect = new QDateEdit();
+    startDateSelect = new QDateEdit();
     endDateSelect = new QDateEdit();
     typeSelect = new QComboBox();
 
-    stardDateSelect->setCalendarPopup(true);
+    startDateSelect->setCalendarPopup(true);
     endDateSelect->setCalendarPopup(true);
 
     typeSelect->addItem("All");
@@ -22,21 +22,21 @@ FilterWindow::FilterWindow(QWidget *parent): QWidget(parent) {
     typeSelect->addItem("Project");
     typeSelect->addItem("Reminder");
 
-    stardDateSelect->setMinimumSize(90,25);
+    startDateSelect->setMinimumSize(90,25);
     endDateSelect->setMinimumSize(90,25);
     typeSelect->setMinimumSize(80,25);
 
-    stardDateSelect->setMaximumSize(90,25);
+    startDateSelect->setMaximumSize(90,25);
     endDateSelect->setMaximumSize(90,25);
     typeSelect->setMaximumSize(80,25);
 
-    stardDateSelect->setDate(QDate(2026,1,1));
+    startDateSelect->setDate(QDate(2026,1,1));
     endDateSelect->setDate(QDate(2026,12,31));
 
     QGridLayout *hGrid = new QGridLayout(this);
 
-    QLabel *startDateLabel = new QLabel("Start Date :");
-    QLabel *endDateLabel = new QLabel("End Date :");
+    QLabel *startDateLabel = new QLabel("From Date :");
+    QLabel *endDateLabel = new QLabel("To Date :");
     QLabel *typeLabel = new QLabel("Type :");
 
     QVBoxLayout *col1 = new QVBoxLayout();
@@ -44,18 +44,18 @@ FilterWindow::FilterWindow(QWidget *parent): QWidget(parent) {
     QVBoxLayout *col3 = new QVBoxLayout();
 
     QHBoxLayout *merge = new QHBoxLayout();
-    QCheckBox *start_check = new QCheckBox();
+    start_check = new QCheckBox();
     merge->addWidget(start_check);
     merge->addWidget(startDateLabel);
     //connect checkBox with endDateSelect
     connect(start_check, &QCheckBox::checkStateChanged, this, &FilterWindow::toggleEndDateEdit);
 
 
-    col1->addWidget(endDateLabel);
-    col1->addWidget(endDateSelect);
+    col1->addLayout(merge);
+    col1->addWidget(startDateSelect);
 
-    col2->addLayout(merge);
-    col2->addWidget(stardDateSelect);
+    col2->addWidget(endDateLabel);
+    col2->addWidget(endDateSelect);
 
     col3->addWidget(typeLabel);
     col3->addWidget(typeSelect);
@@ -72,23 +72,37 @@ FilterWindow::FilterWindow(QWidget *parent): QWidget(parent) {
 }
 
 void FilterWindow::toggleEndDateEdit(bool state){
-    stardDateSelect->setReadOnly(!state);
+    startDateSelect->setReadOnly(!state);
     if(!state){
-        QPalette pal = stardDateSelect->palette();
+        QPalette pal = startDateSelect->palette();
         pal.setColor(QPalette::Base, QColor(225, 225, 225));
-        stardDateSelect->setPalette(pal);
+        startDateSelect->setPalette(pal);
     }else{
-        QPalette pal = stardDateSelect->palette();
+        QPalette pal = startDateSelect->palette();
         pal.setColor(QPalette::Base, QColor(255, 255, 255));
-        stardDateSelect->setPalette(pal);
+        startDateSelect->setPalette(pal);
     }
 }
 
+void FilterWindow::setStartDate(QDate newDate){
+    start_check->setChecked(true);
+    startDateSelect->setDate(newDate);
+}
+
+void FilterWindow::setEndDate(QDate newDate){
+    endDateSelect->setDate(newDate);
+}
+
+void FilterWindow::setType(int i){
+    if(i<6&&i>=0)typeSelect->setCurrentIndex(i);
+    else qDebug()<<"Invalid value";
+}
+
 QDate* FilterWindow::getStartDate(){
-    if(stardDateSelect->isReadOnly()){
+    if(startDateSelect->isReadOnly()){
         return nullptr;
     }
-    return new QDate(stardDateSelect->date());
+    return new QDate(startDateSelect->date());
 }
 
 QDate* FilterWindow::getEndDate(){

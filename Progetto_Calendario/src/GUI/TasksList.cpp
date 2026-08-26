@@ -56,7 +56,6 @@ void TasksList::addTask(AbstractTask* task){
 void TasksList::removeTask(AbstractTask* taskToRemove){
 
     for(auto it = list.begin(); it != list.end(); ++it){
-        qDebug()<<(*it)->getSavedTask()->getId()<<"  < Nella lista <---> Da eliminare >  "<<taskToRemove->getId();
         if((*it)->getSavedTask()->getId() == taskToRemove->getId()){
             containerLayout->removeWidget(*it);
             delete *it;
@@ -137,6 +136,7 @@ bool TasksList::filter(Filter filterValues){
 
     //altrimenti di controlla uno a uno i campi
 
+    //end date
     if(filterValues.endDate != nullptr){
         bool skipFlag = false;
         for(int i = 0; i < containerLayout->count(); ++i){
@@ -153,28 +153,19 @@ bool TasksList::filter(Filter filterValues){
             }
         }
     }
-/*
-    if(filterValues.startDate != nullptr){
-        bool isSmaller = true;
-        for(int i = containerLayout->count()-1; i >= 0; --i){
-            if(isSmaller){
-                if(*filterValues.startDate <= *list[i]->getStartDate()){
-                    list[i]->show();
-                    indexesShowed.prepend(i);
-                }else{
-                    isSmaller = false;
-                    list[i]->hide();
-                }
-            }else{
-                list[i]->hide();
-            }
-        }
-    }*/
+
+    //start date
 
     if(filterValues.startDate != nullptr){
-        if(indexesShowed.empty()){
+        if(indexesShowed.empty()){ //viene eseguita se il filtro di end date filtra tutto
+
             for(int i = 0; i < containerLayout->count(); ++i){
-                if(list[i]->getStartDate() && *filterValues.startDate < *list[i]->getStartDate()){
+
+                if(list[i]->getStartDate() == nullptr){  //se non ha la start date viene mostrato senza controllo
+                    list[i]->show();
+                    indexesShowed.append(i);
+
+                }else if(list[i]->getStartDate() && *filterValues.startDate <= *list[i]->getStartDate()){
                     list[i]->show();
                     indexesShowed.append(i);
                 }else{
@@ -184,9 +175,14 @@ bool TasksList::filter(Filter filterValues){
         }else{
             int indexCount = indexesShowed.count();
             for(int it = 0; it < indexCount; ++it){
-                if(list[it]->getStartDate() && *filterValues.startDate < *list[it]->getStartDate()){
+
+                if(list[it]->getStartDate() == nullptr){  //se non ha la start date viene mostrato senza controllo
+                    list[it]->show();
+
+                }else if(list[it]->getStartDate() != nullptr && *filterValues.startDate <= *list[it]->getStartDate()){
                     list[it]->show();
                 }else{
+                    qDebug()<<*list[it]->getStartDate()<<" <===========> "<<*filterValues.startDate;
                     list[it]->hide();
                     indexesShowed.removeAll(it);
                     if(indexesShowed.isEmpty()){

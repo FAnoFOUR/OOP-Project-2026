@@ -90,6 +90,12 @@ void TasksListWindow::search(){
     emit sendFilterValues(getFilterValues());
 }
 
+void TasksListWindow::filterByCalendar(QDate newDate){
+    filterWindow->setStartDate(newDate);
+    filterWindow->setEndDate(newDate);
+    search();
+}
+
 Filter TasksListWindow::getFilterValues(){
     Filter filterValues = {
         searchBar->text(),
