@@ -26,9 +26,7 @@ XmlReader::TimedTaskData XmlReader::readTimedTaskData(QXmlStreamReader& xml) {
 XmlReader::RepeatableTaskData XmlReader::readRepeatableTaskData(QXmlStreamReader& xml) {
     RepeatableTaskData d;
     auto attr = xml.attributes();
-    d.intervalDays  = attr.value("intervalDays").toInt();
     d.repeatEndDate = QDate::fromString(attr.value("repeatEndDate").toString(),"yyyy-MM-d");
-    d.active        = (attr.value("active").toString() == "true" || attr.value("active").toInt() == 1);
 
     QStringList split = attr.value("weekDays").toString().split(",", Qt::SkipEmptyParts);
     d.weekDays.resize(7);
@@ -103,8 +101,8 @@ Work* XmlReader::readWork(QXmlStreamReader& xml) {
         a.title.toStdString(),
         a.description.toStdString(), a.assignee.toStdString(),
         a.creationDate,
-        r.weekDays, r.intervalDays,
-        r.repeatEndDate, r.active,
+        r.weekDays,
+        r.repeatEndDate,
         subList, attr.value("progress").toInt(),
         attr.value("client").toString().toStdString(),
         attr.value("category").toString().toStdString(),

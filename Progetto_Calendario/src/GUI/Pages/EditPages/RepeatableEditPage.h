@@ -22,9 +22,7 @@ private:
     QCheckBox *saturday = nullptr;
     QCheckBox *sunday = nullptr;
 
-    QSpinBox *intervalDays = nullptr;
     QDateEdit *endDate = nullptr;
-    QCheckBox *active = nullptr;
 
     void setUp();
 
@@ -32,9 +30,7 @@ private:
 
 public:
     QBitArray getWorkDays() const;
-    int getIntervalDays() const;
     QDate getEndDate() const;
-    bool isActive() const;
 
     RepeatableEditPage(RepeatableTask *task, QWidget *parent = nullptr);
     RepeatableEditPage(QWidget *parent = nullptr);

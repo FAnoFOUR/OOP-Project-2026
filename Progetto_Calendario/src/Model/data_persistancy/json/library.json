@@ -1,6 +1,6 @@
 [
   {
-    "type": "activity",
+    "type": "Activity",
     "id": "A1",
     "title": "Riunione team progetto",
     "description": "Allineamento settimanale sullo sviluppo",
@@ -17,7 +17,7 @@
     "meetingLink": "https://meet.google.com/team-sync"
   },
   {
-    "type": "activity",
+    "type": "Activity",
     "id": "A2",
     "title": "Lezione PAO",
     "description": "Lezione su design pattern",
@@ -35,7 +35,7 @@
   },
 
   {
-    "type": "reminder",
+    "type": "Reminder",
     "id": "R1",
     "title": "Bere acqua",
     "description": "Ricordati di bere",
@@ -51,7 +51,7 @@
     "snoozeMinutes": 0
   },
   {
-    "type": "reminder",
+    "type": "Reminder",
     "id": "R2",
     "title": "Chiamare banca",
     "description": "Informazioni su pagamento",
@@ -68,7 +68,7 @@
   },
 
   {
-    "type": "work",
+    "type": "Work",
     "id": "W1",
     "title": "Sviluppo login",
     "description": "Implementare autenticazione utenti",
@@ -85,7 +85,7 @@
     "notes": "Priorità alta"
   },
   {
-    "type": "work",
+    "type": "Work",
     "id": "W2",
     "title": "Debug applicazione",
     "description": "Correzione bug segnalati",
@@ -103,7 +103,7 @@
   },
 
   {
-    "type": "bill",
+    "type": "Bill",
     "id": "B1",
     "title": "Bolletta luce",
     "description": "Pagamento mensile energia",
@@ -120,7 +120,7 @@
     "recurring": true
   },
   {
-    "type": "bill",
+    "type": "Bill",
     "id": "B2",
     "title": "Affitto",
     "description": "Pagamento mensile appartamento",
@@ -138,7 +138,7 @@
   },
 
   {
-    "type": "project",
+    "type": "Project",
     "id": "P1",
     "title": "App Calendario",
     "description": "Progetto PAO",
@@ -155,7 +155,7 @@
     "tags": ["Qt", "C++", "Università"]
   },
   {
-    "type": "project",
+    "type": "Project",
     "id": "P2",
     "title": "Sito personale",
     "description": "Portfolio online",

@@ -12,9 +12,7 @@ RepeatableEditPage::RepeatableEditPage(RepeatableTask *task, QWidget *parent): A
         saturday->setChecked(task->getWeekDays()[5]);
         sunday->setChecked(task->getWeekDays()[6]);
 
-        intervalDays->setValue(task->getIntervalDays());
         endDate->setDate(task->getRepeatEndDate());
-        active->setChecked(task->isActive());
     }
 
 }
@@ -51,27 +49,16 @@ void RepeatableEditPage::setUp(){
     weekDays->addWidget(saturday,1,5);
     weekDays->addWidget(sunday,1,6);
 
-    intervalDays = new QSpinBox();
     endDate = new QDateEdit();
-    active = new QCheckBox();
 
     page->addWidget(new QLabel("Work Days:"));
     page->addLayout(weekDays);
-    QHBoxLayout *lineInterval = new QHBoxLayout();
-    lineInterval->setAlignment(Qt::AlignLeft | Qt::AlignJustify);
-    lineInterval->addWidget(new QLabel("Interval:"));
-    lineInterval->addWidget(intervalDays);
-    page->addLayout(lineInterval);
+
     QHBoxLayout *lineEDate = new QHBoxLayout();
     lineEDate->setAlignment(Qt::AlignLeft| Qt::AlignJustify);
     lineEDate->addWidget(new QLabel("End Date:"));
     lineEDate->addWidget(endDate);
     page->addLayout(lineEDate);
-    QHBoxLayout *line = new QHBoxLayout();
-    line->setAlignment(Qt::AlignLeft);
-    line->addWidget(new QLabel("Is Active:"));
-    line->addWidget(active);
-    page->addLayout(line);
 
 }
 
@@ -87,13 +74,7 @@ QBitArray RepeatableEditPage::getWorkDays() const{
 
     return workDays;
 }
-int RepeatableEditPage::getIntervalDays() const{
-    return intervalDays->value();
-}
 QDate RepeatableEditPage::getEndDate() const{
     return endDate->date();
-}
-bool RepeatableEditPage::isActive() const{
-    return active->isChecked();
 }
 

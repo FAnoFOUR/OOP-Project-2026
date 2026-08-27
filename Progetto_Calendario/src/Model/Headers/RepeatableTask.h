@@ -15,15 +15,13 @@ class RepeatableTask : virtual public AbstractTask {
 private:
 
     QBitArray weekDays;
-    int intervalDays;
     QDate repeatEndDate;
-    bool active;
 
 public:
     RepeatableTask(string title, string description,
                    string assignee, QDate creationDate,
-                   QBitArray weekDays, int intervalDays,
-                   QDate repeatEndDate, bool active);
+                   QBitArray weekDays,
+                   QDate repeatEndDate);
     virtual ~RepeatableTask() override;
 
     QBitArray    getWeekDays()      const;

@@ -99,7 +99,7 @@ std::string WorkEdit::getNotes() const{
 
 void WorkEdit::createTask(){
     Work *newWork = new Work(getTitle(),getDescription(),getAssignee(), QDate::currentDate(),
-                             getWorkDays(),getIntervalDays(),getEndDate(),isActive(),
+                             getWorkDays(),getEndDate(),
                              getSubTasks(), getProgress(),getClient(),getCategory(),getNotes());
     emit returnTask(newWork);
 }
@@ -109,9 +109,7 @@ void WorkEdit::saveEdit(){
     savedWork->setDescription(getDescription());
     savedWork->setAssignee(getAssignee());
     savedWork->setWeekDays(getWorkDays());
-    savedWork->setIntervalDays(getIntervalDays());
     savedWork->setRepeatEndDate(getEndDate());
-    savedWork->setActive(isActive());
     savedWork->setSubTasks(getSubTasks());
     savedWork->setProgress(getProgress());
     savedWork->setClient(getClient());

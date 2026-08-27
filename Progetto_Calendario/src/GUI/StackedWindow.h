@@ -42,6 +42,7 @@ public slots:
 
 public:
     StackedWindow(QWidget *parent = nullptr);
+    void toHomePage();
 };
 
 #endif // STACKEDWINDOW_H

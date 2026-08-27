@@ -17,14 +17,12 @@
         "type": "Activity"
     },
     {
-        "active": true,
         "assignee": "Tony",
         "category": "Bho",
         "client": "IO",
         "creationDate": "2026-08-23",
         "description": "Test1",
         "id": 1,
-        "intervalDays": 0,
         "notes": "Da dettagliare",
         "progress": 0,
         "repeatEndDate": "2026-12-30",

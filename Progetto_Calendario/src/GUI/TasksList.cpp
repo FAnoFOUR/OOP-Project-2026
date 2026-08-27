@@ -54,7 +54,6 @@ void TasksList::addTask(AbstractTask* task){
 }
 
 void TasksList::removeTask(AbstractTask* taskToRemove){
-
     for(auto it = list.begin(); it != list.end(); ++it){
         if((*it)->getSavedTask()->getId() == taskToRemove->getId()){
             containerLayout->removeWidget(*it);

@@ -50,9 +50,7 @@ void XmlVisitor::insertRepeat(const RepeatableTask& R, QDomElement& el) {
     }
 
     el.setAttribute("weekDays", days);
-    el.setAttribute("intervalDays", R.getIntervalDays());
     el.setAttribute("repeatEndDate", R.getRepeatEndDate().toString("yyyy-MM-d"));
-    el.setAttribute("active", R.isActive());
 }
 
 void XmlVisitor::insertDeadline(const Deadline& D, QDomElement& el) {

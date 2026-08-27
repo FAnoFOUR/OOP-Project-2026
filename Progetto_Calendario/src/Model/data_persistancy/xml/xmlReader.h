@@ -26,9 +26,7 @@ private:
     };
     struct RepeatableTaskData {
         QBitArray  weekDays;
-        int        intervalDays;
         QDate    repeatEndDate;
-        bool       active;
     };
     struct DeadlineData {
         QDate dueDate;

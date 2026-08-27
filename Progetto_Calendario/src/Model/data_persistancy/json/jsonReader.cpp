@@ -24,9 +24,7 @@ JsonReader::TimedTaskData JsonReader::readTimedTaskData(const QJsonObject& obj) 
 
 JsonReader::RepeatableTaskData JsonReader::readRepeatableTaskData(const QJsonObject& obj) {
     RepeatableTaskData d;
-    d.intervalDays  = obj["intervalDays"].toInt();
     d.repeatEndDate = QDate::fromString(obj["repeatEndDate"].toString(),"yyyy-MM-d");
-    d.active        = obj["active"].toBool();
     QJsonArray a = obj["weekDays"].toArray();
     d.weekDays.resize(7);
     for (int i = 0; i < a.size(); ++i){
@@ -91,8 +89,8 @@ Work* JsonReader::readWork(const QJsonObject& obj) {
         a.title.toStdString(),
         a.description.toStdString(), a.assignee.toStdString(),
         a.creationDate,
-        r.weekDays, r.intervalDays,
-        r.repeatEndDate, r.active,
+        r.weekDays,
+        r.repeatEndDate,
         subTasks, obj["progress"].toInt(),
         obj["client"].toString().toStdString(),
         obj["category"].toString().toStdString(),

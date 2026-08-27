@@ -32,9 +32,7 @@ void jsonVisitor::insertRepeat(const RepeatableTask& R, QJsonObject& obj){
         workDays.append(bool(R.getWeekDays()[i]));
     }
     obj.insert("weekDays", workDays);
-    obj.insert("intervalDays", QJsonValue::fromVariant(R.getIntervalDays()));
     obj.insert("repeatEndDate", QJsonValue::fromVariant(R.getRepeatEndDate()));
-    obj.insert("active", QJsonValue::fromVariant(R.isActive()));
 }
 
 void jsonVisitor::insertDeadline(const Deadline& D, QJsonObject& obj){

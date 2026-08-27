@@ -2,22 +2,18 @@
 
 RepeatableTask::RepeatableTask(string title, string description,
                                string assignee, QDate creationDate,
-                               QBitArray weekDays, int intervalDays,
-                               QDate repeatEndDate, bool active)
+                               QBitArray weekDays,
+                               QDate repeatEndDate)
     : AbstractTask(title, description, assignee, creationDate),
-    weekDays(weekDays), intervalDays(intervalDays),
-    repeatEndDate(repeatEndDate), active(active)
+    weekDays(weekDays),
+    repeatEndDate(repeatEndDate)
 {}
 
 QBitArray   RepeatableTask::getWeekDays()      const { return weekDays;      }
-int         RepeatableTask::getIntervalDays()  const { return intervalDays;  }
 QDate      RepeatableTask::getRepeatEndDate() const { return repeatEndDate; }
-bool        RepeatableTask::isActive()         const { return active;        }
 
 void RepeatableTask::setWeekDays     (const QBitArray& newWeekDays)         { weekDays      = newWeekDays;      }
-void RepeatableTask::setIntervalDays (const int& newIntervalDays)           { intervalDays  = newIntervalDays;  }
 void RepeatableTask::setRepeatEndDate(const QDate& newRepeatEndDate)       { repeatEndDate = newRepeatEndDate; }
-void RepeatableTask::setActive       (const bool& newActive)                { active        = newActive;        }
 
 RepeatableTask::~RepeatableTask(){
     weekDays.clear();

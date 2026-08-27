@@ -20,8 +20,8 @@ private:
 public:
     Work(string title, string description,
          string assignee, QDate creationDate,
-         QBitArray weekDays, int intervalDays,
-         QDate repeatEndDate, bool active,
+         QBitArray weekDays,
+         QDate repeatEndDate,
          QStringList subTasks, int progress,
          string client, string category, string notes);
     virtual ~Work() override;

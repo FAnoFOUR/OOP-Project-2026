@@ -50,6 +50,10 @@ void StackedWindow::close(){
     }
 }
 
+void StackedWindow::toHomePage(){
+    stack->setCurrentIndex(0);
+}
+
 void StackedWindow::updateDetailPage(AbstractTask *taskToUpdate){
     detail->showTask(taskToUpdate);
 

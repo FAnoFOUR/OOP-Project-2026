@@ -227,9 +227,7 @@ void DetailPage::repeatableBase(const RepeatableTask *task){
     QHBoxLayout *weekDays = new QHBoxLayout();
     QStringList daysNames{"Monday", "Tuesday", "Wednesday", "Thurday", "Friday", "Saturday", "Sunday"};
 
-    QLabel *intervalDays = new QLabel(QString::number(task->getIntervalDays()));
     QLabel *endDate = new QLabel(task->getRepeatEndDate().toString());
-    QLabel *active = new QLabel(task->isActive() ? "True" : "False" );
 
     page->addWidget(new QLabel("Work Days:"));
     for(int i = 0; i < 7; ++i){
@@ -239,12 +237,8 @@ void DetailPage::repeatableBase(const RepeatableTask *task){
         //day->setCheckable(false);
     }
     page->addLayout(weekDays);
-    page->addWidget(new QLabel("Interval:"));
-    page->addWidget(intervalDays);
     page->addWidget(new QLabel("End Date:"));
     page->addWidget(endDate);
-    page->addWidget(new QLabel("Is Active:"));
-    page->addWidget(active);
 }
 
 void DetailPage::deadlineBase(const Deadline *task){

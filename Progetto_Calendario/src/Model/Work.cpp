@@ -9,13 +9,13 @@ using std::endl;
 
 Work::Work(string title, string description,
            string assignee, QDate creationDate,
-           QBitArray weekDays, int intervalDays,
-           QDate repeatEndDate, bool active,
+           QBitArray weekDays,
+           QDate repeatEndDate,
            QStringList subTasks, int progress,
            string client, string category, string notes)
     : AbstractTask(title, description, assignee, creationDate),
     RepeatableTask(title, description, assignee, creationDate,
-                   weekDays, intervalDays, repeatEndDate, active),
+                   weekDays, repeatEndDate),
     subTasks(subTasks), progress(progress),
     client(client), category(category), notes(notes)
 {}

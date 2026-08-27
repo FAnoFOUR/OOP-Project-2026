@@ -69,7 +69,7 @@ void TasksListWindow::addTask(AbstractTask* task){
 }
 
 void TasksListWindow::clearTaskList(){
-    QList<TaskBlock*> list = taskListContainer->getList();
+    taskListContainer->unselect();
     taskListContainer->getList().clear();
     QLayoutItem *child;
     while ((child = taskListContainer->getLayout()->takeAt(0)) != nullptr) {

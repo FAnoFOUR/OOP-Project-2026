@@ -98,6 +98,7 @@ void MainWindow::loadFromFile(){
         bool success = TaskListManager::getInstance().loadFromFile(file.toStdString());
         if (success){
             QMessageBox::information(this, "Success", "Content imported successfully");
+            stackWindow->toHomePage();
             taskListWindow->clearTaskList();
             qDebug()<<TaskListManager::getInstance().getTaskList().size();
             for(auto it : TaskListManager::getInstance().getTaskList()){
