@@ -94,7 +94,7 @@ SOURCES +=  \
     src/GUI/ToolBar.cpp \
     src/GUI/main.cpp \
 
-INCLUDEPATH += src 
+INCLUDEPATH += src \
 
 RESOURCES += resources.qrc
 
