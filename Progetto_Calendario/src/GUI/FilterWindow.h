@@ -19,9 +19,6 @@ private:
     //button to toggle start date
     QCheckBox *start_check=nullptr;
 
-public slots:
-    void toggleEndDateEdit(bool state);
-
 public:
     FilterWindow(QWidget *parent = nullptr);
 

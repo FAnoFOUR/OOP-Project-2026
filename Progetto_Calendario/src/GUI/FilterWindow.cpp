@@ -43,15 +43,9 @@ FilterWindow::FilterWindow(QWidget *parent): QWidget(parent) {
     QVBoxLayout *col2 = new QVBoxLayout();
     QVBoxLayout *col3 = new QVBoxLayout();
 
-    QHBoxLayout *merge = new QHBoxLayout();
-    start_check = new QCheckBox();
-    merge->addWidget(start_check);
-    merge->addWidget(startDateLabel);
-    //connect checkBox with endDateSelect
-    connect(start_check, &QCheckBox::checkStateChanged, this, &FilterWindow::toggleEndDateEdit);
 
 
-    col1->addLayout(merge);
+    col1->addWidget(startDateLabel);
     col1->addWidget(startDateSelect);
 
     col2->addWidget(endDateLabel);
@@ -68,24 +62,9 @@ FilterWindow::FilterWindow(QWidget *parent): QWidget(parent) {
 
     setMinimumWidth(290);
 
-    toggleEndDateEdit(false);
-}
-
-void FilterWindow::toggleEndDateEdit(bool state){
-    startDateSelect->setReadOnly(!state);
-    if(!state){
-        QPalette pal = startDateSelect->palette();
-        pal.setColor(QPalette::Base, QColor(225, 225, 225));
-        startDateSelect->setPalette(pal);
-    }else{
-        QPalette pal = startDateSelect->palette();
-        pal.setColor(QPalette::Base, QColor(255, 255, 255));
-        startDateSelect->setPalette(pal);
-    }
 }
 
 void FilterWindow::setStartDate(QDate newDate){
-    start_check->setChecked(true);
     startDateSelect->setDate(newDate);
 }
 
@@ -99,9 +78,6 @@ void FilterWindow::setType(int i){
 }
 
 QDate* FilterWindow::getStartDate(){
-    if(startDateSelect->isReadOnly()){
-        return nullptr;
-    }
     return new QDate(startDateSelect->date());
 }
 

@@ -2,6 +2,8 @@
 
 #include <QStyle>
 #include <QSizePolicy>
+#include <QCalendar>
+
 
 TasksListWindow::TasksListWindow(QWidget *parent): QWidget(parent){
     setupUI();
@@ -91,8 +93,10 @@ void TasksListWindow::search(){
 }
 
 void TasksListWindow::filterByCalendar(QDate newDate){
-    filterWindow->setStartDate(newDate);
-    filterWindow->setEndDate(newDate);
+    int dayOfWeek = newDate.dayOfWeek();
+
+    filterWindow->setStartDate(newDate.addDays(-(dayOfWeek-1)));
+    filterWindow->setEndDate(newDate.addDays(7 - dayOfWeek));
     search();
 }
 
